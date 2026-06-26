@@ -1,13 +1,8 @@
-import { ApplicationForm, IndustryMarquee } from "@/components/Interactive";
+import { ApplicationForm, IndustryMarquee, SecurityStack } from "@/components/Interactive";
 import { HeroTitle } from "@/components/HeroTitle";
 import { type Dictionary, type Locale } from "@/i18n";
 
 export function HomePage({ dictionary, locale }: { dictionary: Dictionary; locale: Locale }) {
-  const dashboardLabels =
-    locale === "ru"
-      ? ["Интеграция", "Dashboard", "API", "Документация"]
-      : ["Integration", "Dashboard", "API", "Documentation"];
-  const trustLabel = locale === "ru" ? "Сигналы доверия" : "Trust signals";
   const heroTitleLines =
     locale === "ru" && dictionary.hero.title === "Принимайте платежи по всему миру"
       ? ["Принимайте платежи", "по всему миру"]
@@ -22,15 +17,13 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
             <HeroTitle lines={heroTitleLines} />
             <p className="hero-lede">{dictionary.hero.text}</p>
             <div className="hero-actions">
-              <a className="primary-button hero-cta" href="#application">
-                {dictionary.hero.primary}
-                <span aria-hidden="true">-&gt;</span>
+              <a className="primary-button hero-cta text-roll-button" href="#application" aria-label={dictionary.hero.primary}>
+                <span className="button-text-roll" aria-hidden="true" data-text={dictionary.hero.primary}>
+                  <span>{dictionary.hero.primary}</span>
+                  <span>{dictionary.hero.primary}</span>
+                </span>
+                <span className="hero-cta-arrow" aria-hidden="true">-&gt;</span>
               </a>
-            </div>
-            <div className="trust-row" aria-label={trustLabel}>
-              {dictionary.hero.trust.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
             </div>
           </div>
         </div>
@@ -65,47 +58,15 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
       <section id="api" className="api-section">
         <div className="section-shell api-shell">
           <div className="api-copy reveal">
-            <p className="eyebrow">{dictionary.api.eyebrow}</p>
             <h2>{dictionary.api.title}</h2>
             <p>{dictionary.api.text}</p>
             <div className="api-points">
               {dictionary.api.points.map((point) => (
-                <span key={point}>{point}</span>
-              ))}
-            </div>
-          </div>
-          <div className="api-workspace reveal">
-            <div className="api-side-rail" aria-hidden="true">
-              {dashboardLabels.map((label, index) => (
-                <span key={label} className={index === 1 ? "is-active" : ""}>
-                  {label}
+                <span key={Array.isArray(point) ? point[0] : point}>
+                  <strong>{Array.isArray(point) ? point[0] : point}</strong>
+                  {Array.isArray(point) ? <small>{point[1]}</small> : null}
                 </span>
               ))}
-            </div>
-            <div className="console-card">
-              <div className="console-top">
-                <span />
-                <span />
-                <span />
-                <strong>{dictionary.api.status}</strong>
-              </div>
-              <pre>
-                <code>{dictionary.api.code.join("\n")}</code>
-              </pre>
-              <div className="event-grid">
-                <span>request.received</span>
-                <span>merchant.review</span>
-                <span>setup.pending</span>
-              </div>
-            </div>
-            <div className="dashboard-card" aria-hidden="true">
-              <div className="dashboard-status">
-                <span />
-                <strong>merchant review</strong>
-              </div>
-              <i />
-              <i />
-              <i />
             </div>
           </div>
         </div>
@@ -124,35 +85,9 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
       <section id="security" className="security-section">
         <div className="section-shell security-shell">
           <div className="security-copy reveal">
-            <p className="eyebrow">{dictionary.security.eyebrow}</p>
             <h2>{dictionary.security.title}</h2>
-            <SecurityDiagram />
           </div>
-          <div className="trust-framework reveal">
-            {dictionary.security.items.map(([title, text], index) => (
-              <article key={title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="pricing" className="pricing-section section-shell">
-        <div className="pricing-copy reveal">
-          <p className="eyebrow">{dictionary.pricing.eyebrow}</p>
-          <h2>{dictionary.pricing.title}</h2>
-          <p>{dictionary.pricing.text}</p>
-        </div>
-        <div className="pricing-matrix reveal">
-          {dictionary.pricing.factors.map((factor, index) => (
-            <div key={factor}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{factor}</strong>
-            </div>
-          ))}
+          <SecurityStack items={dictionary.security.items} />
         </div>
       </section>
 
@@ -161,6 +96,7 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
           <div className="start-intro">
             <p className="eyebrow">{dictionary.start.eyebrow}</p>
             <h2>{dictionary.start.title}</h2>
+            <p>{dictionary.start.text}</p>
           </div>
           <div className="pipeline">
             {dictionary.start.steps.map(([title, text], index) => (
@@ -184,7 +120,7 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
           <div className="application-copy reveal">
             <p className="eyebrow">{dictionary.form.eyebrow}</p>
             <h2>{dictionary.form.title}</h2>
-            <p>{dictionary.checkout.pricing}</p>
+            <p>{dictionary.form.text}</p>
           </div>
           <ApplicationForm dictionary={dictionary} locale={locale} />
         </div>

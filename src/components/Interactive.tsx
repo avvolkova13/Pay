@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { routePairs, type Dictionary, type Locale } from "@/i18n";
 
 export function IndustryTabs({ items }: { items: readonly (readonly [string, string])[] }) {
@@ -52,10 +52,98 @@ export function IndustryMarquee({
         {repeatedItems.map(([title, text], index) => (
           <article key={`${title}-${index}`} className="industry-pill">
             <span>{title}</span>
-            <p>{text}</p>
+            {text ? <p>{text}</p> : null}
           </article>
         ))}
       </div>
+    </div>
+  );
+}
+
+export function SecurityStack({ items }: { items: readonly (readonly [string, string])[] }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    const cards = Array.from(root.querySelectorAll<HTMLElement>(".trust-card"));
+    let frame = 0;
+
+    const clamp = (value: number) => Math.min(1, Math.max(0, value));
+    const ease = (value: number) => {
+      const t = clamp(value);
+      return t * t * (3 - 2 * t);
+    };
+
+    const update = () => {
+      frame = 0;
+      const viewport = window.innerHeight || 1;
+      const appearStart = viewport * 0.94;
+      const openStart = viewport * 0.74;
+      const finish = viewport * 0.34;
+
+      let railProgress = 0;
+      let railVisibility = 0;
+
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const appear = ease((appearStart - rect.top) / (appearStart - finish));
+        const open = ease((openStart - rect.top) / (openStart - finish));
+        const height = 158 + open * 362;
+        const lift = (1 - appear) * 72;
+        const opacity = 0.38 + appear * 0.62;
+        const innerShift = (1 - open) * 24;
+        const visualScale = 0.94 + open * 0.06;
+
+        card.style.setProperty("--card-height", `${height.toFixed(1)}px`);
+        card.style.setProperty("--card-lift", `${lift.toFixed(1)}px`);
+        card.style.setProperty("--card-opacity", opacity.toFixed(3));
+        card.style.setProperty("--card-open", open.toFixed(3));
+        card.style.setProperty("--card-inner-shift", `${innerShift.toFixed(1)}px`);
+        card.style.setProperty("--card-visual-scale", visualScale.toFixed(3));
+
+        railProgress += open / cards.length;
+        railVisibility = Math.max(railVisibility, appear);
+      });
+
+      root.style.setProperty("--rail-progress", railProgress.toFixed(4));
+      root.style.setProperty("--rail-opacity", (0.28 + railVisibility * 0.22).toFixed(3));
+      root.style.setProperty("--rail-marker-top", `${(railProgress * 100).toFixed(2)}%`);
+      root.style.setProperty("--rail-marker-opacity", (0.55 + railProgress * 0.45).toFixed(3));
+      root.style.setProperty("--rail-shift", `${(-railProgress * 14).toFixed(1)}px`);
+    };
+
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+    };
+  }, []);
+
+  return (
+    <div ref={rootRef} className="trust-framework reveal">
+      {items.map(([title, text], index) => (
+        <article key={title} className="trust-card">
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <h3>{title}</h3>
+          <p>{text}</p>
+          <div className="trust-card-visual" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </div>
+        </article>
+      ))}
     </div>
   );
 }

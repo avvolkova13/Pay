@@ -24,7 +24,6 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
     ["api", dictionary.nav.api],
     ["industries", dictionary.nav.industries],
     ["security", dictionary.nav.security],
-    ["pricing", dictionary.nav.pricing],
     ["start", dictionary.nav.start],
     ["application", dictionary.nav.contact]
   ] as const;
@@ -61,8 +60,17 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
             {dictionary.alternateName}
             <span aria-hidden="true">-&gt;</span>
           </Link>
-          <button ref={loginButtonRef} className="ghost-button" type="button" onClick={() => setLoginOpen(true)}>
-            {dictionary.nav.login}
+          <button
+            ref={loginButtonRef}
+            className="ghost-button text-roll-button"
+            type="button"
+            aria-label={dictionary.nav.login}
+            onClick={() => setLoginOpen(true)}
+          >
+            <span className="button-text-roll" aria-hidden="true" data-text={dictionary.nav.login}>
+              <span>{dictionary.nav.login}</span>
+              <span>{dictionary.nav.login}</span>
+            </span>
           </button>
           <button
             className="menu-button"
@@ -92,14 +100,18 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
             {dictionary.checkout.eyebrow}
           </Link>
           <button
-            className="mobile-login-button"
+            className="mobile-login-button text-roll-button"
             type="button"
+            aria-label={dictionary.nav.login}
             onClick={() => {
               setMenuOpen(false);
               setLoginOpen(true);
             }}
           >
-            {dictionary.nav.login}
+            <span className="button-text-roll" aria-hidden="true" data-text={dictionary.nav.login}>
+              <span>{dictionary.nav.login}</span>
+              <span>{dictionary.nav.login}</span>
+            </span>
           </button>
         </nav>
       </div>
