@@ -116,12 +116,13 @@ export const dictionaries = {
     },
     security: {
       eyebrow: "Безопасность и доверие",
-      title: "Безопасность и доверие",
+      title: "Начните за несколько шагов",
+      text: "Простой процесс подключения — от первой заявки до запуска платежной инфраструктуры.",
       items: [
-        ["Защита данных", "Современные механизмы защиты помогают обеспечить безопасность платежей и данных клиентов."],
-        ["Проверка партнеров", "Процедуры проверки помогают снизить риски и обеспечить надежность платежной инфраструктуры."],
-        ["Международные стандарты", "Работа строится с учетом международных требований к безопасности и соответствию нормативным требованиям."],
-        ["Надежная инфраструктура", "Стабильная архитектура и постоянный мониторинг обеспечивают бесперебойную работу платежных сервисов."]
+        ["Заявка", "Оставьте заявку, и мы свяжемся с вами для обсуждения ваших задач."],
+        ["Согласование", "Определяем условия сотрудничества, проверяем данные компании и согласовываем процесс подключения."],
+        ["Интеграция", "Подключаем API, настраиваем необходимые сервисы и сопровождаем внедрение."],
+        ["Запуск", "Проводим финальную проверку и запускаем платежную инфраструктуру в работу."]
       ]
     },
     pricing: {
@@ -131,14 +132,14 @@ export const dictionaries = {
       factors: ["Тип услуги", "Объем операций", "География", "Способы оплаты", "Риск-профиль бизнеса"]
     },
     start: {
-      eyebrow: "Подключение",
-      title: "Начните за несколько шагов",
-      text: "Простой процесс подключения — от первой заявки до запуска платежной инфраструктуры.",
+      eyebrow: "",
+      title: "Безопасность и доверие",
+      text: "",
       steps: [
-        ["Заявка", "Оставьте заявку, и мы свяжемся с вами для обсуждения ваших задач."],
-        ["Согласование", "Определяем условия сотрудничества, проверяем данные компании и согласовываем процесс подключения."],
-        ["Интеграция", "Подключаем API, настраиваем необходимые сервисы и сопровождаем внедрение."],
-        ["Запуск", "Проводим финальную проверку и запускаем платежную инфраструктуру в работу."]
+        ["ЗАЩИТА ДАННЫХ", "Современные механизмы защиты помогают обеспечить безопасность платежей и данных клиентов."],
+        ["ПРОВЕРКА ПАРТНЕРОВ", "Процедуры проверки помогают снизить риски и обеспечить надежность платежной инфраструктуры."],
+        ["МЕЖДУНАРОДНЫЕ СТАНДАРТЫ", "Работа строится с учетом международных требований к безопасности и соответствию нормативным требованиям."],
+        ["НАДЕЖНАЯ ИНФРАСТРУКТУРА", "Стабильная архитектура и постоянный мониторинг обеспечивают бесперебойную работу платежных сервисов."]
       ]
     },
     form: {
@@ -315,12 +316,13 @@ export const dictionaries = {
     },
     security: {
       eyebrow: "Security & Trust",
-      title: "Trust is built through review, transparency and careful processes",
+      title: "Start in a few steps",
+      text: "A clear onboarding process from the first application to launching payment infrastructure.",
       items: [
-        ["Data protection", "Website forms collect only the information needed to review an application."],
-        ["Client and partner review", "Onboarding assumes review of the business model, website and operational profile."],
-        ["Demo boundaries", "Login and checkout on this website are demo interfaces and do not process real payments."],
-        ["International practices", "Communication and processes are oriented toward international payment business practices."]
+        ["Application", "Submit an application and we will contact you to discuss your goals."],
+        ["Agreement", "We define cooperation terms, review company data and agree on the onboarding process."],
+        ["Integration", "We connect the API, configure the required services and support implementation."],
+        ["Launch", "We run the final check and launch the payment infrastructure."]
       ]
     },
     pricing: {
@@ -330,14 +332,14 @@ export const dictionaries = {
       factors: ["Service type", "Transaction volume", "Geography", "Payment methods", "Business risk profile"]
     },
     start: {
-      eyebrow: "Getting Started",
-      title: "Start in a few steps",
-      text: "A clear onboarding process from the first application to launching payment infrastructure.",
+      eyebrow: "",
+      title: "Security & Trust",
+      text: "",
       steps: [
-        ["Application", "Submit an application and we will contact you to discuss your goals."],
-        ["Agreement", "We define cooperation terms, review company data and agree on the onboarding process."],
-        ["Integration", "We connect the API, configure the required services and support implementation."],
-        ["Launch", "We run the final check and launch the payment infrastructure."]
+        ["DATA PROTECTION", "Modern protection mechanisms help ensure the security of payments and client data."],
+        ["PARTNER REVIEW", "Review procedures help reduce risks and support reliable payment infrastructure."],
+        ["INTERNATIONAL STANDARDS", "The work is built with international security and compliance requirements in mind."],
+        ["RELIABLE INFRASTRUCTURE", "Stable architecture and continuous monitoring support uninterrupted payment services."]
       ]
     },
     form: {

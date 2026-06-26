@@ -179,8 +179,11 @@ export function ApplicationForm({ dictionary, locale }: { dictionary: Dictionary
         {dictionary.form.message}
         <textarea name="message" rows={5} required />
       </label>
-      <button className="primary-button wide-field" type="submit">
-        {dictionary.form.submit}
+      <button className="primary-button wide-field text-roll-button" type="submit">
+        <span className="button-text-roll" aria-hidden="true" data-text={dictionary.form.submit}>
+          <span>{dictionary.form.submit}</span>
+          <span>{dictionary.form.submit}</span>
+        </span>
       </button>
       {success ? (
         <div className="success-message wide-field" role="status">

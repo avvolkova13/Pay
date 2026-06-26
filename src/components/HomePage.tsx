@@ -82,21 +82,12 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
         </div>
       </section>
 
-      <section id="security" className="security-section">
-        <div className="section-shell security-shell">
-          <div className="security-copy reveal">
-            <h2>{dictionary.security.title}</h2>
-          </div>
-          <SecurityStack items={dictionary.security.items} />
-        </div>
-      </section>
-
       <section id="start" className="start-section">
         <div className="section-shell start-shell reveal">
           <div className="start-intro">
-            <p className="eyebrow">{dictionary.start.eyebrow}</p>
+            {dictionary.start.eyebrow ? <p className="eyebrow">{dictionary.start.eyebrow}</p> : null}
             <h2>{dictionary.start.title}</h2>
-            <p>{dictionary.start.text}</p>
+            {dictionary.start.text ? <p>{dictionary.start.text}</p> : null}
           </div>
           <div className="pipeline">
             {dictionary.start.steps.map(([title, text], index) => (
@@ -112,6 +103,16 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section id="security" className="security-section">
+        <div className="section-shell security-shell">
+          <div className="security-copy reveal">
+            <h2>{dictionary.security.title}</h2>
+            <p>{dictionary.security.text}</p>
+          </div>
+          <SecurityStack items={dictionary.security.items} />
         </div>
       </section>
 

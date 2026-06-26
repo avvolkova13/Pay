@@ -1682,6 +1682,14 @@ pre {
   line-height: 0.9;
 }
 
+.security-copy p {
+  max-width: 680px;
+  margin: 24px auto 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  line-height: 1.45;
+}
+
 .security-diagram {
   position: relative;
   min-height: 500px;
@@ -2062,18 +2070,26 @@ pre {
 }
 
 .start-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 0.74fr) minmax(0, 1fr);
-  gap: clamp(34px, 7vw, 100px);
+  display: block;
+}
+
+.start-intro {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .start-intro h2 {
+  margin-right: auto;
+  margin-left: auto;
   color: #fff;
 }
 
 .pipeline {
   display: grid;
   gap: 0;
+  width: min(100%, 980px);
+  margin: clamp(46px, 7vw, 88px) auto 0;
   border-top: 1px dotted var(--line-dark);
 }
 

@@ -23,8 +23,8 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
     ["services", dictionary.nav.services],
     ["api", dictionary.nav.api],
     ["industries", dictionary.nav.industries],
-    ["security", dictionary.nav.security],
-    ["start", dictionary.nav.start],
+    ["start", dictionary.nav.security],
+    ["security", dictionary.nav.start],
     ["application", dictionary.nav.contact]
   ] as const;
 
