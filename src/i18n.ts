@@ -43,7 +43,7 @@ export const dictionaries = {
     },
     login: {
       title: "Вход для бизнеса",
-      subtitle: "Демо-форма. Реальный личный кабинет в этой версии сайта не подключен.",
+      subtitle: "Войдите в личный кабинет, чтобы управлять платежами, отслеживать операции и получать доступ к инструментам платформы.",
       email: "Email",
       password: "Пароль",
       submit: "Войти",
@@ -248,7 +248,7 @@ export const dictionaries = {
     },
     login: {
       title: "Business login",
-      subtitle: "Demo form. A real business cabinet is not connected in this website version.",
+      subtitle: "Sign in to your account to manage payments, track operations and access platform tools.",
       email: "Email",
       password: "Password",
       submit: "Sign in",
@@ -288,10 +288,15 @@ export const dictionaries = {
       ]
     },
     api: {
-      eyebrow: "Developer-Friendly API",
-      title: "Integration should be clear for business and engineering",
-      text: "The section shows the intended working model: request, review, payment event and business dashboard status. This is a demo scheme without real API calls.",
-      points: ["Fast integration start", "Clear documentation", "Business dashboard", "Events and statuses"],
+      eyebrow: "Integration",
+      title: "Developer-Friendly API",
+      text: "Connect payment infrastructure through a clear API, manage operations in the dashboard and launch payment scenarios without a complex integration process.",
+      points: [
+        ["Fast integration", "A ready API, detailed documentation and a clear onboarding process help launch payment acceptance faster."],
+        ["Dashboard", "Track payments, control operation statuses and manage the service in a single interface."],
+        ["Documentation", "Detailed guides, request examples and technical materials help teams integrate payment solutions quickly."],
+        ["Technical support", "Our specialists support onboarding and help resolve technical questions at every integration stage."]
+      ],
       code: [
         "POST /payments/setup",
         "{",

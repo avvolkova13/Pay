@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { routePairs, type Dictionary, type Locale } from "@/i18n";
 
@@ -56,6 +57,86 @@ export function IndustryMarquee({
           </article>
         ))}
       </div>
+    </div>
+  );
+}
+
+export function ApiFeatureRows({ items }: { items: readonly (string | readonly [string, string])[] }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    const rows = Array.from(root.querySelectorAll<HTMLElement>(".api-feature-row"));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      { rootMargin: "0px 0px -18% 0px", threshold: 0.28 }
+    );
+
+    rows.forEach((row) => observer.observe(row));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={rootRef} className="api-feature-list">
+      {items.map((item, index) => {
+        const title = Array.isArray(item) ? item[0] : item;
+        const text = Array.isArray(item) ? item[1] : "";
+
+        return (
+          <article
+            key={title}
+            className="api-feature-row"
+            style={{ "--row-index": index } as CSSProperties & Record<"--row-index", number>}
+          >
+            <div className="api-feature-copy">
+              <h3 data-text={title}>{title}</h3>
+              {text ? <p>{text}</p> : null}
+            </div>
+            <span className={`api-feature-icon api-feature-icon-${index + 1}`} aria-hidden="true">
+              <svg viewBox="0 0 48 48" focusable="false">
+                {index === 0 ? (
+                  <>
+                    <path d="M12 30h24" />
+                    <path d="M18 24h18" />
+                    <path d="M24 18h12" />
+                    <path d="M12 18v18h24" />
+                  </>
+                ) : index === 1 ? (
+                  <>
+                    <rect x="12" y="12" width="24" height="24" rx="1" />
+                    <path d="M18 19h12" />
+                    <path d="M18 25h18" />
+                    <path d="M18 31h8" />
+                  </>
+                ) : index === 2 ? (
+                  <>
+                    <path d="M14 12h18l4 4v20H14z" />
+                    <path d="M31 12v6h5" />
+                    <path d="M19 24h12" />
+                    <path d="M19 30h9" />
+                  </>
+                ) : (
+                  <>
+                    <path d="M14 30v-5a10 10 0 0 1 20 0v5" />
+                    <path d="M14 30h6v6h-6z" />
+                    <path d="M28 30h6v6h-6z" />
+                    <path d="M24 36h7" />
+                  </>
+                )}
+              </svg>
+            </span>
+          </article>
+        );
+      })}
     </div>
   );
 }

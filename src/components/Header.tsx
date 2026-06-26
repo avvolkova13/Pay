@@ -1,16 +1,51 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, KeyboardEvent, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import { localePrefix, routePairs, switchHref, type Dictionary, type Locale } from "@/i18n";
 
 const SCRAMBLE_GLYPHS = ["+", "×", "/", "\\", "_", "-", "=", "*", "#", "%", "<", ">", "[", "]", "{", "}"];
+const ANCHOR_SCROLL_DURATION = 1700;
 
 type HeaderProps = {
   dictionary: Dictionary;
   locale: Locale;
   routeKey: keyof typeof routePairs;
 };
+
+function getAnchorTargetTop(target: HTMLElement) {
+  const header = document.querySelector<HTMLElement>(".site-header");
+  const headerExtraSpace = target.id === "application" ? 112 : 58;
+  const headerOffset = (header?.getBoundingClientRect().height ?? 0) + headerExtraSpace;
+
+  return Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset);
+}
+
+function scrollToAnchorTarget(target: HTMLElement, url: URL) {
+  const startedAt = performance.now();
+
+  window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
+
+  function correctScroll() {
+    const targetTop = getAnchorTargetTop(target);
+
+    window.scrollTo({
+      top: targetTop,
+      behavior: "auto"
+    });
+
+    if (performance.now() - startedAt < ANCHOR_SCROLL_DURATION) {
+      requestAnimationFrame(correctScroll);
+    }
+  }
+
+  window.scrollTo({
+    top: getAnchorTargetTop(target),
+    behavior: "smooth"
+  });
+
+  requestAnimationFrame(correctScroll);
+}
 
 export function Header({ dictionary, locale, routeKey }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,6 +66,42 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
+
+  useEffect(() => {
+    function onDocumentAnchorClick(event: MouseEvent) {
+      const targetElement = event.target instanceof Element ? event.target : null;
+      const anchor = targetElement?.closest<HTMLAnchorElement>('a[href*="#"]');
+
+      if (!anchor) {
+        return;
+      }
+
+      const href = anchor.getAttribute("href");
+
+      if (!href) {
+        return;
+      }
+
+      const url = new URL(href, window.location.origin);
+      const targetId = url.hash.slice(1);
+      const isSameRoute = url.pathname === window.location.pathname;
+      const target = targetId ? document.getElementById(targetId) : null;
+
+      if (!isSameRoute || !target) {
+        return;
+      }
+
+      event.preventDefault();
+      setMenuOpen(false);
+      scrollToAnchorTarget(target, url);
+    }
+
+    document.addEventListener("click", onDocumentAnchorClick, true);
+
+    return () => {
+      document.removeEventListener("click", onDocumentAnchorClick, true);
+    };
+  }, []);
 
   function closeLogin() {
     setLoginOpen(false);
@@ -58,7 +129,6 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
         <div className="header-actions">
           <Link className="language-link" href={switchHref(routeKey, locale)}>
             {dictionary.alternateName}
-            <span aria-hidden="true">-&gt;</span>
           </Link>
           <button
             ref={loginButtonRef}
@@ -150,6 +220,29 @@ function NavItemLink({
     setScramble((state) => ({ ...state, active: false }));
   }
 
+  function handleClick(event: ReactMouseEvent<HTMLAnchorElement>) {
+    if (event.defaultPrevented) {
+      onClick?.();
+      return;
+    }
+
+    const url = new URL(href, window.location.origin);
+    const targetId = url.hash.slice(1);
+    const isSameRoute = url.pathname === window.location.pathname;
+    const target = targetId ? document.getElementById(targetId) : null;
+
+    if (isSameRoute && target) {
+      event.preventDefault();
+      onClick?.();
+
+      scrollToAnchorTarget(target, url);
+
+      return;
+    }
+
+    onClick?.();
+  }
+
   useEffect(() => {
     const link = linkRef.current;
 
@@ -195,7 +288,7 @@ function NavItemLink({
       className={className}
       href={href}
       aria-label={label}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <NavScrambleText label={label} active={scramble.active} signal={scramble.signal} />
       <span className="nav-plus" aria-hidden="true">
@@ -376,8 +469,11 @@ function LoginModal({ dictionary, onClose }: { dictionary: Dictionary; onClose: 
               {dictionary.login.error}
             </strong>
           ) : null}
-          <button className="primary-button" type="submit">
-            {dictionary.login.submit}
+          <button className="primary-button text-roll-button" type="submit">
+            <span className="button-text-roll" aria-hidden="true" data-text={dictionary.login.submit}>
+              <span>{dictionary.login.submit}</span>
+              <span>{dictionary.login.submit}</span>
+            </span>
           </button>
         </form>
       </section>

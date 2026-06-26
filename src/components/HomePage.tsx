@@ -1,4 +1,4 @@
-import { ApplicationForm, IndustryMarquee, SecurityStack } from "@/components/Interactive";
+import { ApiFeatureRows, ApplicationForm, IndustryMarquee, SecurityStack } from "@/components/Interactive";
 import { HeroTitle } from "@/components/HeroTitle";
 import { type Dictionary, type Locale } from "@/i18n";
 
@@ -22,7 +22,6 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
                   <span>{dictionary.hero.primary}</span>
                   <span>{dictionary.hero.primary}</span>
                 </span>
-                <span className="hero-cta-arrow" aria-hidden="true">-&gt;</span>
               </a>
             </div>
           </div>
@@ -60,15 +59,8 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
           <div className="api-copy reveal">
             <h2>{dictionary.api.title}</h2>
             <p>{dictionary.api.text}</p>
-            <div className="api-points">
-              {dictionary.api.points.map((point) => (
-                <span key={Array.isArray(point) ? point[0] : point}>
-                  <strong>{Array.isArray(point) ? point[0] : point}</strong>
-                  {Array.isArray(point) ? <small>{point[1]}</small> : null}
-                </span>
-              ))}
-            </div>
           </div>
+          <ApiFeatureRows items={dictionary.api.points} />
         </div>
       </section>
 
@@ -92,14 +84,16 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
           <div className="pipeline">
             {dictionary.start.steps.map(([title, text], index) => (
               <article key={title} className={index === 0 ? "is-current" : ""}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span className="pipeline-marker" aria-hidden="true">
+                  <svg viewBox="0 0 34 34" focusable="false">
+                    <path className="pipeline-icon-frame" d="M7 20.5 17 8l10 12.5-10 5.5z" />
+                    <path className="pipeline-icon-line" d="M17 8v18" />
+                    <path className="pipeline-icon-line" d="M9 20.5h16" />
+                    <circle className="pipeline-icon-node" cx="17" cy="17" r="2.2" />
+                  </svg>
+                </span>
                 <h3>{title}</h3>
                 <p>{text}</p>
-                {index === 0 ? (
-                  <a href="#application" aria-label={dictionary.hero.primary}>
-                    {dictionary.hero.primary}
-                  </a>
-                ) : null}
               </article>
             ))}
           </div>
@@ -109,6 +103,7 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
       <section id="security" className="security-section">
         <div className="section-shell security-shell">
           <div className="security-copy reveal">
+            <p className="eyebrow">{dictionary.nav.start}</p>
             <h2>{dictionary.security.title}</h2>
             <p>{dictionary.security.text}</p>
           </div>
@@ -116,10 +111,9 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
         </div>
       </section>
 
-      <section id="application" className="application-section">
-        <div className="section-shell application-shell">
+      <section className="application-section">
+        <div id="application" className="section-shell application-shell">
           <div className="application-copy reveal">
-            <p className="eyebrow">{dictionary.form.eyebrow}</p>
             <h2>{dictionary.form.title}</h2>
             <p>{dictionary.form.text}</p>
           </div>
