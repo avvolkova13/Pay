@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { MotionReveal } from "@/components/MotionReveal";
+import { SiteLoader } from "@/components/SiteLoader";
 import "../globals.css";
+import "../site-loader.css";
 
 export const metadata: Metadata = {
   title: "PAYWAYS INTERNATIONAL - FZCO",
@@ -15,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body>
+        <SiteLoader />
         <MotionReveal />
         {children}
       </body>
