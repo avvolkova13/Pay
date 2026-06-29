@@ -40,15 +40,24 @@ export function IndustryTabs({ items }: { items: readonly (readonly [string, str
 
 export function IndustryMarquee({
   items,
-  label = "Industries"
+  label = "Industries",
+  reveal = false,
+  revealDelay
 }: {
   items: readonly (readonly [string, string])[];
   label?: string;
+  reveal?: boolean;
+  revealDelay?: string;
 }) {
   const repeatedItems = [...items, ...items];
 
   return (
-    <div className="industry-marquee" aria-label={label}>
+    <div
+      className="industry-marquee"
+      aria-label={label}
+      data-reveal={reveal ? "decor" : undefined}
+      style={revealDelay ? ({ "--reveal-delay": revealDelay } as CSSProperties) : undefined}
+    >
       <div className="industry-track">
         {repeatedItems.map(([title, text], index) => (
           <article key={`${title}-${index}`} className="industry-pill">
@@ -239,28 +248,33 @@ export function ApplicationForm({ dictionary, locale }: { dictionary: Dictionary
   }
 
   return (
-    <form className="application-form reveal" onSubmit={onSubmit}>
-      <label>
+    <form className="application-form" data-reveal="section" onSubmit={onSubmit}>
+      <label data-reveal="field">
         {dictionary.form.name}
         <input name="name" required />
       </label>
-      <label>
+      <label data-reveal="field" style={{ "--reveal-delay": "65ms" } as CSSProperties}>
         {dictionary.form.email}
         <input name="email" type="email" required />
       </label>
-      <label>
+      <label data-reveal="field" style={{ "--reveal-delay": "130ms" } as CSSProperties}>
         {dictionary.form.phone}
         <input name="phone" type="tel" required />
       </label>
-      <label>
+      <label data-reveal="field" style={{ "--reveal-delay": "195ms" } as CSSProperties}>
         {dictionary.form.website}
         <input name="website" type="url" placeholder="https://" />
       </label>
-      <label className="wide-field">
+      <label className="wide-field" data-reveal="field" style={{ "--reveal-delay": "260ms" } as CSSProperties}>
         {dictionary.form.message}
         <textarea name="message" rows={5} required />
       </label>
-      <button className="primary-button wide-field text-roll-button" type="submit">
+      <button
+        className="primary-button wide-field text-roll-button"
+        type="submit"
+        data-reveal="button"
+        style={{ "--reveal-delay": "325ms" } as CSSProperties}
+      >
         <span className="button-text-roll" aria-hidden="true" data-text={dictionary.form.submit}>
           <span>{dictionary.form.submit}</span>
           <span>{dictionary.form.submit}</span>
@@ -285,13 +299,13 @@ export function DemoCardForm({ dictionary }: { dictionary: Dictionary }) {
   }
 
   return (
-    <form className="checkout-form" onSubmit={onSubmit}>
-      <strong className="warning">{dictionary.checkout.warning}</strong>
-      <label>
+    <form className="checkout-form" data-reveal="section" onSubmit={onSubmit}>
+      <strong className="warning" data-reveal="copy">{dictionary.checkout.warning}</strong>
+      <label data-reveal="field" style={{ "--reveal-delay": "70ms" } as CSSProperties}>
         {dictionary.checkout.cardNumber}
         <input name="cardNumber" value="4111 •••• •••• 1111" readOnly />
       </label>
-      <div className="form-row">
+      <div className="form-row" data-reveal="field" style={{ "--reveal-delay": "140ms" } as CSSProperties}>
         <label>
           {dictionary.checkout.expiry}
           <input name="expiry" value="12/30" readOnly />
@@ -301,7 +315,7 @@ export function DemoCardForm({ dictionary }: { dictionary: Dictionary }) {
           <input name="cvv" value="***" readOnly />
         </label>
       </div>
-      <label>
+      <label data-reveal="field" style={{ "--reveal-delay": "210ms" } as CSSProperties}>
         {dictionary.checkout.cardholder}
         <input name="cardholder" value="DEMO CARDHOLDER" readOnly />
       </label>
@@ -310,7 +324,7 @@ export function DemoCardForm({ dictionary }: { dictionary: Dictionary }) {
           {dictionary.checkout.error}
         </strong>
       ) : null}
-      <button className="primary-button" type="submit">
+      <button className="primary-button" type="submit" data-reveal="button" style={{ "--reveal-delay": "280ms" } as CSSProperties}>
         {dictionary.checkout.submit}
       </button>
     </form>

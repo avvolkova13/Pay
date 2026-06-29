@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { routePairs, type Dictionary, type Locale } from "@/i18n";
 
 export function Footer({ dictionary, locale }: { dictionary: Dictionary; locale: Locale }) {
@@ -12,7 +13,7 @@ export function Footer({ dictionary, locale }: { dictionary: Dictionary; locale:
   return (
     <footer className="site-footer">
       <div className="footer-main">
-        <div>
+        <div data-reveal="copy">
           <h2>PAYWAYS INTERNATIONAL - FZCO</h2>
           <p>{dictionary.footer.activity}</p>
           <p>{dictionary.footer.registration}</p>
@@ -20,7 +21,7 @@ export function Footer({ dictionary, locale }: { dictionary: Dictionary; locale:
           <p>{dictionary.footer.address}</p>
           <p>{dictionary.footer.support}</p>
         </div>
-        <div>
+        <div data-reveal="copy" style={{ "--reveal-delay": "110ms" } as CSSProperties}>
           <h3>{dictionary.footer.sitemap}</h3>
           <Link href={routePairs.home[locale]}>{locale === "ru" ? "Главная" : "Home"}</Link>
           <Link href={routePairs.checkout[locale]}>{dictionary.checkout.eyebrow}</Link>
@@ -30,7 +31,7 @@ export function Footer({ dictionary, locale }: { dictionary: Dictionary; locale:
             </Link>
           ))}
         </div>
-        <div>
+        <div data-reveal="copy" style={{ "--reveal-delay": "190ms" } as CSSProperties}>
           <h3>{dictionary.footer.methods}</h3>
           <div className="method-badges">
             {dictionary.footer.badges.map((badge) => (
@@ -39,7 +40,7 @@ export function Footer({ dictionary, locale }: { dictionary: Dictionary; locale:
           </div>
         </div>
       </div>
-      <div className="footer-bottom">
+      <div className="footer-bottom" data-reveal="copy" style={{ "--reveal-delay": "260ms" } as CSSProperties}>
         <span>© 2026 PAYWAYS INTERNATIONAL - FZCO</span>
         <span>Dubai Silicon Oasis, Dubai, UAE</span>
       </div>

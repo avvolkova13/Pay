@@ -117,6 +117,7 @@ export function HeroTitle({ lines }: { lines: string[] }) {
   return (
     <h1
       className="hero-title-effect"
+      data-reveal="hero-title"
       onMouseEnter={() => setActive("1")}
       onPointerEnter={() => setActive("1")}
       onPointerLeave={deactivateOnTrueExit}

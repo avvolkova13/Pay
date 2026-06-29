@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { FormEvent, KeyboardEvent, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import { localePrefix, routePairs, switchHref, type Dictionary, type Locale } from "@/i18n";
 
@@ -124,23 +125,30 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
   return (
     <>
       <header className="site-header">
-        <Link className="brand" href={routePairs.home[locale]} aria-label="PAYWAYS home">
+        <Link className="brand" href={routePairs.home[locale]} aria-label="PAYWAYS home" data-reveal="brand">
           <span className="brand-mark">PW</span>
           <span>PAYWAYS</span>
         </Link>
 
         <nav className="desktop-nav" aria-label={primaryNavigationLabel}>
-          {navItems.map(([id, label]) => (
+          {navItems.map(([id, label], index) => (
             <NavItemLink
               key={id}
               href={`${prefix}/#${id}`}
               label={label}
+              reveal="nav"
+              style={{ "--reveal-delay": `${90 + index * 45}ms` } as CSSProperties}
             />
           ))}
         </nav>
 
         <div className="header-actions">
-          <Link className="language-link" href={switchHref(routeKey, locale)}>
+          <Link
+            className="language-link"
+            href={switchHref(routeKey, locale)}
+            data-reveal="button"
+            style={{ "--reveal-delay": "380ms" } as CSSProperties}
+          >
             {dictionary.alternateName}
           </Link>
           <button
@@ -148,6 +156,8 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
             className="ghost-button text-roll-button"
             type="button"
             aria-label={dictionary.nav.login}
+            data-reveal="button"
+            style={{ "--reveal-delay": "430ms" } as CSSProperties}
             onClick={() => setLoginOpen(true)}
           >
             <span className="button-text-roll" aria-hidden="true" data-text={dictionary.nav.login}>
@@ -160,6 +170,8 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
             type="button"
             aria-expanded={menuOpen}
             aria-label={dictionary.nav.menu}
+            data-reveal="button"
+            style={{ "--reveal-delay": "430ms" } as CSSProperties}
             onClick={() => setMenuOpen((value) => !value)}
           >
             <span />
@@ -208,12 +220,16 @@ function NavItemLink({
   className,
   href,
   label,
-  onClick
+  onClick,
+  reveal,
+  style
 }: {
   className?: string;
   href: string;
   label: string;
   onClick?: () => void;
+  reveal?: string;
+  style?: CSSProperties;
 }) {
   const [scramble, setScramble] = useState({ active: false, signal: 0 });
   const linkRef = useRef<HTMLAnchorElement>(null);
@@ -301,6 +317,8 @@ function NavItemLink({
       className={className}
       href={href}
       aria-label={label}
+      data-reveal={reveal}
+      style={style}
       onClick={handleClick}
     >
       <NavScrambleText label={label} active={scramble.active} signal={scramble.signal} />
@@ -466,18 +484,28 @@ function LoginModal({ dictionary, onClose }: { dictionary: Dictionary; onClose: 
         onMouseDown={(event) => event.stopPropagation()}
         onKeyDown={onKeyDown}
       >
-        <button className="modal-close" type="button" onClick={onClose} aria-label={dictionary.nav.close}>
+        <button
+          className="modal-close"
+          type="button"
+          onClick={onClose}
+          aria-label={dictionary.nav.close}
+          data-reveal="button"
+        >
           x
         </button>
-        <p className="eyebrow">PAYWAYS</p>
-        <h2 id="login-title">{dictionary.login.title}</h2>
-        <p id="login-description">{dictionary.login.subtitle}</p>
+        <p className="eyebrow" data-reveal="copy">PAYWAYS</p>
+        <h2 id="login-title" data-reveal="heading" style={{ "--reveal-delay": "60ms" } as CSSProperties}>
+          {dictionary.login.title}
+        </h2>
+        <p id="login-description" data-reveal="copy" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
+          {dictionary.login.subtitle}
+        </p>
         <form onSubmit={onSubmit}>
-          <label>
+          <label data-reveal="field" style={{ "--reveal-delay": "180ms" } as CSSProperties}>
             {dictionary.login.email}
             <input ref={emailRef} name="email" type="email" autoComplete="email" required />
           </label>
-          <label>
+          <label data-reveal="field" style={{ "--reveal-delay": "240ms" } as CSSProperties}>
             {dictionary.login.password}
             <input name="password" type="password" autoComplete="current-password" required />
           </label>
@@ -486,7 +514,12 @@ function LoginModal({ dictionary, onClose }: { dictionary: Dictionary; onClose: 
               {dictionary.login.error}
             </strong>
           ) : null}
-          <button className="primary-button text-roll-button" type="submit">
+          <button
+            className="primary-button text-roll-button"
+            type="submit"
+            data-reveal="button"
+            style={{ "--reveal-delay": "300ms" } as CSSProperties}
+          >
             <span className="button-text-roll" aria-hidden="true" data-text={dictionary.login.submit}>
               <span>{dictionary.login.submit}</span>
               <span>{dictionary.login.submit}</span>
