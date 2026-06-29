@@ -222,22 +222,11 @@ button {
   transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.nav-plus-mark::before,
-.nav-plus-mark::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.nav-plus-mark svg {
+  display: block;
   width: 100%;
-  height: 1.25px;
-  border-radius: 999px;
-  background: #fff;
-  content: "";
-  transform: translate(-50%, -50%);
-  transform-origin: 50% 50%;
-}
-
-.nav-plus-mark::after {
-  transform: translate(-50%, -50%) rotate(90deg);
+  height: 100%;
+  fill: currentColor;
 }
 
 .desktop-nav a:hover,
@@ -416,11 +405,6 @@ button {
 .mobile-nav-link .nav-plus-mark {
   width: 14px;
   height: 14px;
-}
-
-.mobile-nav-link .nav-plus-mark::before,
-.mobile-nav-link .nav-plus-mark::after {
-  width: 14px;
 }
 
 .mobile-panel a:last-child,
@@ -2051,7 +2035,7 @@ pre {
   left: auto;
   z-index: 1;
   width: min(520px, calc(50% - 72px));
-  min-height: 0;
+  min-height: 520px;
   height: var(--card-height, 520px);
   padding: 0;
   border: 1px solid rgba(106, 119, 137, 0.62);
@@ -2773,7 +2757,8 @@ input[readonly] {
 
 .site-footer a {
   display: block;
-  padding: 8px 0;
+  min-height: 44px;
+  padding: 10px 0;
   color: rgba(255, 255, 255, 0.76);
 }
 
@@ -3159,6 +3144,46 @@ input[readonly] {
   }
 }
 
+@media (max-width: 900px) {
+  .pipeline article {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 14px 16px;
+    min-height: auto;
+    padding: 28px 0;
+  }
+
+  .pipeline-marker {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .pipeline h3 {
+    grid-column: 2;
+    grid-row: 1;
+    max-width: 100%;
+    font-size: clamp(1.9rem, 6vw, 2.35rem);
+    line-height: 1;
+  }
+
+  .pipeline p {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    max-width: none;
+    padding-left: 60px;
+  }
+
+  .pipeline article:hover .pipeline-marker {
+    width: 42px;
+    height: 42px;
+    transform: translateX(0);
+  }
+
+  .pipeline article:hover h3 {
+    transform: translateX(8px);
+  }
+}
+
 @media (max-width: 720px) {
   :root {
     --container: min(100% - 28px, 1280px);
@@ -3242,8 +3267,10 @@ input[readonly] {
   }
 
   .pipeline h3 {
-    font-size: 2.2rem;
+    max-width: 100%;
+    font-size: clamp(1.62rem, 7.4vw, 2rem);
     line-height: 1;
+    overflow-wrap: anywhere;
   }
 
   .trust-framework h3 {
@@ -3328,14 +3355,15 @@ input[readonly] {
   }
 
   .api-feature-list {
-    padding: 10px 12px 20px;
+    padding: 10px 12px 34px;
   }
 
   .api-feature-row {
     grid-template-columns: minmax(0, 1fr) 58px;
     gap: 16px;
     min-height: 132px;
-    padding: 24px 0;
+    padding: 26px 0 32px;
+    overflow: visible;
   }
 
   .api-feature-row h3 {
@@ -3408,6 +3436,8 @@ input[readonly] {
   .pipeline p {
     grid-column: 1 / -1;
     grid-row: 2;
+    width: 100%;
+    max-width: none;
     padding-left: 60px;
   }
 
@@ -3423,6 +3453,10 @@ input[readonly] {
 
   .application-shell {
     padding: 24px 16px;
+  }
+
+  .application-section {
+    background: #edf3f9;
   }
 
   .checkout-summary {

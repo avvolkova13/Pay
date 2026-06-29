@@ -6,6 +6,7 @@ import { localePrefix, routePairs, switchHref, type Dictionary, type Locale } fr
 
 const SCRAMBLE_GLYPHS = ["+", "×", "/", "\\", "_", "-", "=", "*", "#", "%", "<", ">", "[", "]", "{", "}"];
 const ANCHOR_SCROLL_DURATION = 1700;
+const APPLICATION_SCROLL_DURATION = 3200;
 
 type HeaderProps = {
   dictionary: Dictionary;
@@ -23,6 +24,7 @@ function getAnchorTargetTop(target: HTMLElement) {
 
 function scrollToAnchorTarget(target: HTMLElement, url: URL) {
   const startedAt = performance.now();
+  const correctionDuration = target.id === "application" ? APPLICATION_SCROLL_DURATION : ANCHOR_SCROLL_DURATION;
 
   window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
 
@@ -34,7 +36,7 @@ function scrollToAnchorTarget(target: HTMLElement, url: URL) {
       behavior: "auto"
     });
 
-    if (performance.now() - startedAt < ANCHOR_SCROLL_DURATION) {
+    if (performance.now() - startedAt < correctionDuration) {
       requestAnimationFrame(correctScroll);
     }
   }
@@ -68,6 +70,15 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
   }, [locale]);
 
   useEffect(() => {
+    function correctCurrentHash() {
+      const targetId = window.location.hash.slice(1);
+      const target = targetId ? document.getElementById(targetId) : null;
+
+      if (target) {
+        scrollToAnchorTarget(target, new URL(window.location.href));
+      }
+    }
+
     function onDocumentAnchorClick(event: MouseEvent) {
       const targetElement = event.target instanceof Element ? event.target : null;
       const anchor = targetElement?.closest<HTMLAnchorElement>('a[href*="#"]');
@@ -97,9 +108,11 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
     }
 
     document.addEventListener("click", onDocumentAnchorClick, true);
+    window.addEventListener("hashchange", correctCurrentHash);
 
     return () => {
       document.removeEventListener("click", onDocumentAnchorClick, true);
+      window.removeEventListener("hashchange", correctCurrentHash);
     };
   }, []);
 
@@ -292,7 +305,11 @@ function NavItemLink({
     >
       <NavScrambleText label={label} active={scramble.active} signal={scramble.signal} />
       <span className="nav-plus" aria-hidden="true">
-        <span className="nav-plus-mark" />
+        <span className="nav-plus-mark">
+          <svg viewBox="0 0 90 90" focusable="false" aria-hidden="true">
+            <path d="M49.4648 90.009H40.4648V53.2706H49.4648V90.009ZM90 40.4561V49.4561H53.2617V40.4561H90ZM36.7383 49.4561H0V40.4561H36.7383V49.4561ZM49.4648 36.7471H40.4648V0.00878906L49.4648 0V36.7471Z" />
+          </svg>
+        </span>
       </span>
     </Link>
   );
