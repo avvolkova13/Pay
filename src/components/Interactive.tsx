@@ -114,31 +114,49 @@ export function ApiFeatureRows({ items }: { items: readonly (string | readonly [
               <svg viewBox="0 0 48 48" focusable="false">
                 {index === 0 ? (
                   <>
-                    <path d="M12 30h24" />
-                    <path d="M18 24h18" />
-                    <path d="M24 18h12" />
-                    <path d="M12 18v18h24" />
+                    <rect x="8.5" y="14" width="11" height="20" rx="1.5" />
+                    <rect x="28.5" y="14" width="11" height="20" rx="1.5" />
+                    <path d="M19.5 20h5.2c2.2 0 3.8 1.6 3.8 3.8v.4c0 2.2-1.6 3.8-3.8 3.8h-5.2" />
+                    <path className="api-icon-accent" d="M13.5 21h4" />
+                    <path className="api-icon-accent" d="M30.5 27h4" />
+                    <circle className="api-icon-node" cx="14" cy="27" r="1.45" />
+                    <circle className="api-icon-node" cx="34" cy="21" r="1.45" />
                   </>
                 ) : index === 1 ? (
                   <>
-                    <rect x="12" y="12" width="24" height="24" rx="1" />
-                    <path d="M18 19h12" />
-                    <path d="M18 25h18" />
-                    <path d="M18 31h8" />
+                    <rect x="9" y="10.5" width="30" height="27" rx="2" />
+                    <path d="M9 17.5h30" />
+                    <rect x="13.5" y="22" width="8" height="9.5" rx="1" />
+                    <path d="M26 31.5h8.5" />
+                    <path d="M26 26.5h8.5" />
+                    <path className="api-icon-accent" d="M26 22.5h5.5" />
+                    <circle className="api-icon-node" cx="14" cy="14" r="1" />
+                    <circle className="api-icon-node api-icon-node-soft" cx="18" cy="14" r="1" />
                   </>
                 ) : index === 2 ? (
                   <>
-                    <path d="M14 12h18l4 4v20H14z" />
-                    <path d="M31 12v6h5" />
-                    <path d="M19 24h12" />
-                    <path d="M19 30h9" />
+                    <path d="M13 9.5h16.5L36 16v22.5H13z" />
+                    <path d="M29.5 9.5V16H36" />
+                    <path d="M18 20.5h8" />
+                    <path d="M18 33h12" />
+                    <path className="api-icon-accent" d="m21 25-3 3 3 3" />
+                    <path className="api-icon-accent" d="m28 25 3 3-3 3" />
+                    <path d="M24 31.5 26 24.5" />
                   </>
                 ) : (
                   <>
-                    <path d="M14 30v-5a10 10 0 0 1 20 0v5" />
-                    <path d="M14 30h6v6h-6z" />
-                    <path d="M28 30h6v6h-6z" />
-                    <path d="M24 36h7" />
+                    <path d="M24 24 13 16" />
+                    <path d="M24 24 35 16" />
+                    <path d="M24 24 14 34" />
+                    <path d="M24 24 35 34" />
+                    <path d="M18 39h12" />
+                    <path className="api-icon-accent" d="M30 39h6" />
+                    <path className="api-icon-accent" d="m31.8 26.8 2.2 2.1 4.2-5" />
+                    <circle className="api-icon-node" cx="24" cy="24" r="3" />
+                    <circle className="api-icon-node api-icon-node-soft" cx="13" cy="16" r="1.65" />
+                    <circle className="api-icon-node api-icon-node-soft" cx="35" cy="16" r="1.65" />
+                    <circle className="api-icon-node api-icon-node-soft" cx="14" cy="34" r="1.65" />
+                    <circle className="api-icon-node api-icon-node-soft" cx="35" cy="34" r="1.65" />
                   </>
                 )}
               </svg>
@@ -510,7 +528,7 @@ export function ApplicationForm({ dictionary, locale }: { dictionary: Dictionary
   );
 }
 
-export function DemoCardForm({ dictionary }: { dictionary: Dictionary }) {
+export function CardForm({ dictionary }: { dictionary: Dictionary }) {
   const [error, setError] = useState(false);
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -537,7 +555,7 @@ export function DemoCardForm({ dictionary }: { dictionary: Dictionary }) {
       </div>
       <label data-reveal="field" style={{ "--reveal-delay": "210ms" } as CSSProperties}>
         {dictionary.checkout.cardholder}
-        <input name="cardholder" value="DEMO CARDHOLDER" readOnly />
+        <input name="cardholder" value="PAYWAYS CLIENT" readOnly />
       </label>
       {error ? (
         <strong className="form-error" role="alert">

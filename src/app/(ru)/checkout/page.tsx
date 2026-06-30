@@ -1,4 +1,4 @@
-import { CheckoutDemo } from "@/components/CheckoutDemo";
+import { CheckoutPage } from "@/components/CheckoutPage";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { getDictionary } from "@/i18n";
@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <>
       <Header dictionary={dictionary} locale="ru" routeKey="checkout" />
-      <CheckoutDemo dictionary={dictionary} />
+      <CheckoutPage dictionary={dictionary} />
       <Footer dictionary={dictionary} locale="ru" />
     </>
   );

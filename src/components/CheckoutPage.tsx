@@ -1,8 +1,8 @@
-import { DemoCardForm } from "@/components/Interactive";
+import { CardForm } from "@/components/Interactive";
 import type { CSSProperties } from "react";
 import type { Dictionary } from "@/i18n";
 
-export function CheckoutDemo({ dictionary }: { dictionary: Dictionary }) {
+export function CheckoutPage({ dictionary }: { dictionary: Dictionary }) {
   return (
     <main className="checkout-page section-shell">
       <section className="checkout-hero">
@@ -25,7 +25,7 @@ export function CheckoutDemo({ dictionary }: { dictionary: Dictionary }) {
             <i />
           </div>
         </article>
-        <DemoCardForm dictionary={dictionary} />
+        <CardForm dictionary={dictionary} />
       </section>
     </main>
   );

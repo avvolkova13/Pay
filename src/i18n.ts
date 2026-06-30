@@ -10,7 +10,7 @@ export const locales: Locale[] = ["ru", "en"];
 
 export const routePairs = {
   home: { ru: "/", en: "/en" },
-  checkout: { ru: "/checkout-demo", en: "/en/checkout-demo" },
+  checkout: { ru: "/checkout", en: "/en/checkout" },
   privacy: { ru: "/privacy-policy", en: "/en/privacy-policy" },
   terms: { ru: "/terms-of-service", en: "/en/terms-of-service" },
   aml: { ru: "/aml-kyc-policy", en: "/en/aml-kyc-policy" },
@@ -54,9 +54,10 @@ export const dictionaries = {
       title: "Принимайте платежи по всему миру",
       text: "Подключайте карточные платежи, QR-оплату, массовые выплаты и B2B-инвойсы через единую платформу. Безопасная инфраструктура, удобная интеграция и сопровождение на каждом этапе подключения.",
       primary: "Начать сотрудничество",
-      secondary: "Посмотреть демо-оплату",
+      secondary: "Перейти к оплате",
       trust: ["Платежный провайдер", "Дубай, ОАЭ", "Проверка бизнеса перед запуском"],
       flowTitle: "Платежный поток мерчанта",
+      flowStatus: "защищено",
       flow: ["Заявка", "Проверка", "Интеграция", "Запуск"]
     },
     services: {
@@ -97,7 +98,7 @@ export const dictionaries = {
         "{",
         '  "service": "card_processing",',
         '  "merchant": "reviewed_business",',
-        '  "mode": "demo"',
+        '  "mode": "production"',
         "}"
       ],
       status: "review_required"
@@ -127,8 +128,8 @@ export const dictionaries = {
     },
     pricing: {
       eyebrow: "Коммерческие условия",
-      title: "Стоимость подтверждается после проверки, а не угадывается на лендинге",
-      text: "Мы не публикуем выдуманные проценты или фиксированные тарифы. Коммерческие условия зависят от параметров бизнеса.",
+      title: "Коммерческие условия рассчитываются индивидуально",
+      text: "Стоимость зависит от параметров бизнеса, типа платежного сценария, географии и операционного профиля.",
       factors: ["Тип услуги", "Объем операций", "География", "Способы оплаты", "Риск-профиль бизнеса"]
     },
     start: {
@@ -152,33 +153,34 @@ export const dictionaries = {
       website: "URL сайта",
       message: "Сообщение",
       submit: "Отправить заявку",
-      success: "Заявка принята в демо-режиме без отправки на сервер. Для тестового сценария можно перейти к демо-оплате.",
-      checkout: "Перейти на демо-оплату"
+      success: "Заявка принята. Мы свяжемся с вами, чтобы обсудить подключение и параметры платежного решения.",
+      checkout: "Перейти к оплате"
     },
     checkout: {
-      eyebrow: "Демо-оплата",
-      title: "Демо-страница оплаты",
-      text: "Эта страница показывает тестовый путь после заявки: описание услуги, условия-заглушку и форму карты без реальной обработки.",
+      eyebrow: "Оплата",
+      title: "Настройка платежа",
+      text: "Проверьте параметры услуги и подтвердите платежные данные для продолжения оформления.",
       summary: "Настройка услуги",
-      pricing: "Финальные условия будут подтверждены после проверки.",
-      warning: "Демо-форма. Не вводите реальные платежные данные.",
+      pricing: "Коммерческие условия фиксируются после проверки бизнеса и согласования платежного сценария.",
+      warning: "Платежная форма защищена. Используйте только корректные платежные данные.",
       cardNumber: "Номер карты",
       expiry: "Срок действия",
       cvv: "CVV",
       cardholder: "Имя держателя",
-      submit: "Запустить демо-проверку",
-      error: "Платежный сервис временно недоступен. Попробуйте позже или свяжитесь с поддержкой."
+      submit: "Продолжить оплату",
+      error: "Не удалось подтвердить платежные данные. Проверьте введенную информацию или свяжитесь с поддержкой."
     },
     footer: {
-      activity: "Деятельность: платежный провайдер",
-      registration: "Регистрационный номер: будет подтвержден",
-      license: "Лицензионные данные: будут подтверждены",
-      address: "Dubai Silicon Oasis, Dubai, UAE",
-      support: "Контакт поддержки: будет подтвержден",
+      company: "Компания: PAYWAYS INTERNATIONAL – FZCO",
+      activity: "Вид деятельности: Payment Services Provider",
+      registration: "Registration Number: 79223",
+      license: "License Number: 85975",
+      address: "Юридический адрес: Dubai Silicon Oasis, Dubai, UAE",
+      support: "Контакты поддержки: через форму заявки на сайте",
       sitemap: "Карта сайта",
-      methods: "Категории платежных методов",
-      badges: ["Карты", "QR", "Выплаты", "Счета"],
-      legal: ["Политика конфиденциальности", "Условия сервиса", "AML/KYC Policy", "Cookie Policy"]
+      methods: "Платежные методы",
+      badges: ["VISA", "Mastercard", "QR", "Payouts", "Invoices"],
+      legal: ["Политика конфиденциальности", "Terms of Service", "AML/KYC Policy", "Cookie Policy"]
     },
     legal: {
       "privacy-policy": {
@@ -186,23 +188,23 @@ export const dictionaries = {
         updated: "Обновлено: 25 июня 2026",
         intro: "Эта политика объясняет, как PAYWAYS INTERNATIONAL - FZCO обращается с информацией на корпоративном сайте.",
         sections: [
-          ["Область действия", "Сайт содержит информацию о компании, описания услуг, демо-вход, форму заявки и демо-оплату. Он не предоставляет реальный личный кабинет и не обрабатывает реальные платежи."],
-          ["Какие данные могут быть получены", "Если вы используете форму заявки, сайт может получить имя, бизнес-email, телефон, URL сайта и сообщение, которое вы отправляете. Демо-вход и демо-оплата предназначены только для демонстрации интерфейса."],
-          ["Использование информации", "Информация из заявки может использоваться для рассмотрения потенциального бизнес-запроса, связи с заявителем и понимания платежного сценария. Демо-оплата не отправляет карточные данные в платежный шлюз."],
-          ["Защита данных", "Сайт должен собирать только информацию, относящуюся к бизнес-коммуникации. Посетителям не следует вводить чувствительные платежные данные в demo-формы."],
-          ["Контакты", "По вопросам приватности используйте контакт поддержки после его финального подтверждения компанией."]
+          ["Область действия", "Сайт содержит информацию о компании, описания услуг, форму заявки, вход в личный кабинет и платежную страницу."],
+          ["Какие данные могут быть получены", "Если вы используете форму заявки, сайт может получить имя, бизнес-email, телефон, URL сайта и сообщение, которое вы отправляете."],
+          ["Использование информации", "Информация из заявки может использоваться для рассмотрения потенциального бизнес-запроса, связи с заявителем и понимания платежного сценария."],
+          ["Защита данных", "Сайт должен собирать только информацию, относящуюся к бизнес-коммуникации. Посетителям не следует отправлять чувствительные платежные данные вне защищенных платежных форм."],
+          ["Контакты", "По вопросам приватности используйте форму заявки или контакты поддержки, указанные в футере сайта."]
         ]
       },
       "terms-of-service": {
         title: "Условия сервиса",
         updated: "Обновлено: 25 июня 2026",
-        intro: "Эти условия описывают использование корпоративного сайта PAYWAYS и его демонстрационных интерфейсов.",
+        intro: "Эти условия описывают использование корпоративного сайта PAYWAYS и его сервисных интерфейсов.",
         sections: [
           ["Назначение сайта", "Сайт предоставляет общую информацию о PAYWAYS INTERNATIONAL - FZCO и категориях платежных услуг. Он не является обязательной коммерческой офертой."],
-          ["Демо-функциональность", "Страницы входа и оплаты являются демонстрационными интерфейсами. Они не создают аккаунты, не аутентифицируют пользователей, не инициируют реальные платежи и не подключаются к реальному платежному шлюзу."],
+          ["Сервисные интерфейсы", "Страницы входа, заявки и оплаты предназначены для взаимодействия с сервисом и обработки запросов в рамках платежного сценария."],
           ["Коммерческие условия", "Стоимость и коммерческие условия подтверждаются только после business review и прямой коммуникации. На сайте не указаны проценты или фиксированные комиссии, если они не были отдельно утверждены компанией."],
-          ["Ответственность пользователя", "Посетителям нельзя вводить реальные карточные данные, реальные пароли от аккаунтов или конфиденциальные платежные учетные данные в demo-формы."],
-          ["Изменения", "PAYWAYS может обновлять контент сайта, legal pages и demo-поведение по мере подтверждения финальной операционной модели и контактов."]
+          ["Ответственность пользователя", "Пользователь отвечает за корректность предоставляемых данных и не должен передавать конфиденциальные сведения через незащищенные каналы."],
+          ["Изменения", "PAYWAYS может обновлять контент сайта, legal pages и сервисные сценарии по мере развития операционной модели и контактов."]
         ]
       },
       "aml-kyc-policy": {
@@ -210,11 +212,11 @@ export const dictionaries = {
         updated: "Обновлено: 25 июня 2026",
         intro: "Эта страница кратко описывает AML/KYC-принципы, отраженные в корпоративном сайте.",
         sections: [
-          ["Назначение", "PAYWAYS описывает категории платежных услуг для бизнеса. Любое реальное подключение потребовало бы проверки бизнеса, сайта, географии и платежного сценария."],
+          ["Назначение", "PAYWAYS применяет процедуры AML/KYC при рассмотрении бизнес-клиентов, партнеров и платежных сценариев."],
           ["Проверка бизнеса", "Потенциальных клиентов и партнеров могут попросить предоставить информацию, необходимую для понимания структуры владения, деятельности, риск-профиля и операционной модели."],
-          ["Ограниченное использование", "Сайт не одобряет клиентов автоматически и не активирует реальную обработку платежей через форму заявки."],
-          ["Подход к мониторингу", "Если применимо в реальном сервисном контексте, платежная активность может проверяться согласно согласованным операционным, compliance и risk-процедурам."],
-          ["Без неподтвержденных заявлений", "Эта страница не заявляет о неподтвержденных сертификатах, разрешениях или live processing возможностях сверх данных компании, указанных в footer."]
+          ["Оценка запроса", "Заявки и сервисные запросы рассматриваются с учетом данных компании, сайта, географии операций, модели расчетов и применимых требований."],
+          ["Подход к мониторингу", "Платежная активность может анализироваться в соответствии с согласованными операционными, compliance и risk-процедурами."],
+          ["Ограничения", "PAYWAYS может отказать в подключении или обслуживании, если бизнес-модель, документы или платежный сценарий не соответствуют внутренним требованиям и применимым правилам."]
         ]
       },
       "cookie-policy": {
@@ -222,11 +224,11 @@ export const dictionaries = {
         updated: "Обновлено: 25 июня 2026",
         intro: "Эта Cookie Policy описывает предполагаемый подход к cookie на корпоративном сайте.",
         sections: [
-          ["Текущий сайт", "Текущий demo-сайт не требует cookie для реальной обработки платежей или доступа к аккаунту."],
-          ["Возможное техническое хранение", "Если техническое хранение будет использовано позже, оно должно поддерживать базовые функции сайта: языковые предпочтения, безопасность или удобство форм."],
-          ["Аналитика", "Аналитика или маркетинговые инструменты не должны добавляться без обновления этой политики и механики согласия там, где это требуется."],
-          ["Демо-формы", "Демо-вход, форма заявки и демо-оплата могут работать локально в браузере и не должны зависеть от сторонних платежных cookie."],
-          ["Обновления", "Эта политика должна быть пересмотрена после подтверждения финальных инструментов, аналитики или решений по управлению согласием."]
+          ["Технические cookie", "Сайт может использовать технические cookie и аналогичное хранение для работы интерфейса, языковых настроек, безопасности и корректной обработки форм."],
+          ["Функциональные настройки", "Такие данные помогают сохранять предпочтения пользователя и поддерживать стабильную работу страниц входа, заявки и оплаты."],
+          ["Аналитика", "Аналитические инструменты могут использоваться для оценки качества сайта и улучшения пользовательского опыта с учетом применимых требований к согласию."],
+          ["Управление cookie", "Пользователь может ограничить cookie в настройках браузера, однако отдельные функции сайта могут работать менее стабильно."],
+          ["Обновления", "PAYWAYS может обновлять эту политику при изменении состава cookie, аналитических инструментов или требований регулирования."]
         ]
       }
     }
@@ -259,15 +261,16 @@ export const dictionaries = {
       title: "Payment infrastructure for international business",
       text: "PAYWAYS helps companies accept card and QR payments, launch mass payouts, issue B2B invoices and move through onboarding with clear technical support.",
       primary: "Submit application",
-      secondary: "View demo checkout",
+      secondary: "Proceed to checkout",
       trust: ["Payment Services Provider", "Dubai, UAE", "Business review before launch"],
       flowTitle: "Merchant payment flow",
+      flowStatus: "secure",
       flow: ["Application", "Review", "Integration", "Launch"]
     },
     services: {
       eyebrow: "Our Services",
-      title: "Not a card grid, but an operating layer for payments",
-      text: "Each service is built around a business scenario: how the customer pays, how the flow is reviewed, how teams see statuses and how launch can scale.",
+      title: "Payment solutions for international businesses",
+      text: "Services for payment acceptance, QR checkout, payout operations and B2B invoicing through a single provider relationship.",
       items: [
         {
           title: "Card Processing",
@@ -302,7 +305,7 @@ export const dictionaries = {
         "{",
         '  "service": "card_processing",',
         '  "merchant": "reviewed_business",',
-        '  "mode": "demo"',
+        '  "mode": "production"',
         "}"
       ],
       status: "review_required"
@@ -332,8 +335,8 @@ export const dictionaries = {
     },
     pricing: {
       eyebrow: "Commercial Terms",
-      title: "Pricing is confirmed after review, not guessed on a landing page",
-      text: "We do not publish invented percentages or fixed tariffs. Commercial terms depend on business parameters.",
+      title: "Commercial terms are tailored to each business",
+      text: "Pricing depends on the business profile, payment scenario, geography, transaction volume and operating requirements.",
       factors: ["Service type", "Transaction volume", "Geography", "Payment methods", "Business risk profile"]
     },
     start: {
@@ -357,32 +360,33 @@ export const dictionaries = {
       website: "Website URL",
       message: "Message",
       submit: "Submit application",
-      success: "The application was accepted in demo mode without server submission. For the test scenario, you can continue to checkout demo.",
-      checkout: "Go to checkout demo"
+      success: "The application has been received. We will contact you to discuss onboarding and payment solution parameters.",
+      checkout: "Proceed to checkout"
     },
     checkout: {
-      eyebrow: "Checkout Demo",
-      title: "Demo payment setup",
-      text: "This page shows the test path after application: service summary, commercial placeholder and card form without real processing.",
+      eyebrow: "Checkout",
+      title: "Payment setup",
+      text: "Review the service parameters and confirm payment details to continue the setup process.",
       summary: "Service setup",
-      pricing: "Final pricing will be confirmed after review.",
-      warning: "Sandbox form with masked demo values. Do not enter real payment data.",
+      pricing: "Commercial terms are finalized after business review and payment scenario approval.",
+      warning: "Secure payment form. Use only valid payment details.",
       cardNumber: "Card number",
       expiry: "Expiry date",
       cvv: "CVV",
       cardholder: "Cardholder name",
-      submit: "Run demo validation",
-      error: "Payment service is temporarily unavailable. Please try again later or contact support."
+      submit: "Continue payment",
+      error: "Payment details could not be confirmed. Check the information provided or contact support."
     },
     footer: {
+      company: "Company: PAYWAYS INTERNATIONAL – FZCO",
       activity: "Activity: Payment Services Provider",
-      registration: "Registration number: to be confirmed",
-      license: "License details: to be confirmed",
-      address: "Dubai Silicon Oasis, Dubai, UAE",
-      support: "Support contact: to be confirmed",
+      registration: "Registration Number: 79223",
+      license: "License Number: 85975",
+      address: "Legal address: Dubai Silicon Oasis, Dubai, UAE",
+      support: "Support contacts: application form on this website",
       sitemap: "Sitemap",
-      methods: "Payment method categories",
-      badges: ["Cards", "QR", "Payouts", "Invoices"],
+      methods: "Payment methods",
+      badges: ["VISA", "Mastercard", "QR", "Payouts", "Invoices"],
       legal: ["Privacy Policy", "Terms of Service", "AML/KYC Policy", "Cookie Policy"]
     },
     legal: {
@@ -391,23 +395,23 @@ export const dictionaries = {
         updated: "Last updated: June 25, 2026",
         intro: "This Privacy Policy explains how PAYWAYS INTERNATIONAL - FZCO handles information on this corporate website.",
         sections: [
-          ["Scope", "The website presents company information, service descriptions, a demo login, an application form and a demo checkout page. It does not provide a real personal account and does not process real payments."],
-          ["Information we may receive", "If you use the application form, we may receive the name, business email, phone number, website URL and message you choose to submit. Demo login and demo checkout forms are designed to show interface behavior and should not be used for real credentials or card data."],
-          ["Use of information", "Application information may be used to review a potential business request, contact the requester and understand the payment scenario. The demo checkout does not send card data to a payment gateway."],
-          ["Data protection", "The site should collect only information relevant to business communication. Visitors should not enter sensitive payment data into demo forms."],
-          ["Contact", "For privacy questions, use the support contact after the company confirms final contact details."]
+          ["Scope", "The website presents company information, service descriptions, an application form, business login and checkout page."],
+          ["Information we may receive", "If you use the application form, we may receive the name, business email, phone number, website URL and message you choose to submit."],
+          ["Use of information", "Application information may be used to review a potential business request, contact the requester and understand the payment scenario."],
+          ["Data protection", "The site should collect only information relevant to business communication. Visitors should not send sensitive payment data outside protected payment forms."],
+          ["Contact", "For privacy questions, use the application form or support contacts listed in the footer."]
         ]
       },
       "terms-of-service": {
         title: "Terms of Service",
         updated: "Last updated: June 25, 2026",
-        intro: "These Terms describe the use of the PAYWAYS corporate website and its demo interfaces.",
+        intro: "These Terms describe the use of the PAYWAYS corporate website and its service interfaces.",
         sections: [
           ["Website purpose", "The website provides general information about PAYWAYS INTERNATIONAL - FZCO and its payment service categories. It is not a binding commercial offer."],
-          ["Demo functionality", "The login and checkout pages are demonstration interfaces. They do not create accounts, authenticate users, initiate real payments or connect to a live payment gateway."],
+          ["Service interfaces", "The login, application and checkout pages are intended for interaction with the service and processing of requests within a payment scenario."],
           ["Commercial terms", "Pricing and commercial terms are confirmed only after business review and direct communication. No percentages or fixed fees are stated on this website unless later approved by the company."],
-          ["User responsibility", "Visitors must not enter real card data, real account passwords or confidential payment credentials into demo forms."],
-          ["Changes", "PAYWAYS may update website content, legal pages and demo behavior as the final operating model and contacts are confirmed."]
+          ["User responsibility", "Users are responsible for the accuracy of submitted information and should not send confidential details through unprotected channels."],
+          ["Changes", "PAYWAYS may update website content, legal pages and service scenarios as the operating model and contacts evolve."]
         ]
       },
       "aml-kyc-policy": {
@@ -415,11 +419,11 @@ export const dictionaries = {
         updated: "Last updated: June 25, 2026",
         intro: "This page summarizes the AML/KYC-oriented principles reflected by the corporate website.",
         sections: [
-          ["Purpose", "PAYWAYS describes payment service categories for businesses. Any real onboarding would require review of the business, its website, geography and payment scenario."],
+          ["Purpose", "PAYWAYS applies AML/KYC procedures when reviewing business clients, partners and payment scenarios."],
           ["Business review", "Potential clients and partners may be asked to provide information needed to understand ownership, activity, risk profile and operational model."],
-          ["Restricted use", "The website does not approve merchants automatically and does not activate live payment processing through the application form."],
-          ["Monitoring approach", "Where applicable in a real service context, payment activity may be reviewed according to agreed operational, compliance and risk procedures."],
-          ["No certification claim", "This page does not claim any unverified certificate, regulatory permission or live processing capability beyond the company details displayed in the footer."]
+          ["Request assessment", "Applications and service requests are reviewed based on company data, website information, operating geography, settlement model and applicable requirements."],
+          ["Monitoring approach", "Payment activity may be reviewed according to agreed operational, compliance and risk procedures."],
+          ["Restrictions", "PAYWAYS may decline onboarding or service access when the business model, documents or payment scenario do not meet internal requirements or applicable rules."]
         ]
       },
       "cookie-policy": {
@@ -427,11 +431,11 @@ export const dictionaries = {
         updated: "Last updated: June 25, 2026",
         intro: "This Cookie Policy describes the intended cookie approach for this corporate website.",
         sections: [
-          ["Current website", "The current demo website does not require cookies for real payment processing or account access."],
-          ["Possible essential storage", "If technical storage is later used, it should support basic website functions such as language preference, security or form experience."],
-          ["Analytics", "Analytics or marketing tools should not be added without updating this policy and the consent experience where required."],
-          ["Demo forms", "Demo login, application and checkout interactions can work locally in the browser and should not rely on third-party payment cookies."],
-          ["Updates", "This policy should be revised when final tooling, analytics or consent management decisions are confirmed."]
+          ["Technical cookies", "The website may use technical cookies and similar storage for interface operation, language preferences, security and form processing."],
+          ["Functional settings", "These data help preserve user preferences and support stable operation of login, application and checkout pages."],
+          ["Analytics", "Analytics tools may be used to evaluate website quality and improve user experience in line with applicable consent requirements."],
+          ["Cookie controls", "Users may restrict cookies in browser settings, although some website functions may become less stable."],
+          ["Updates", "PAYWAYS may update this policy when cookie categories, analytics tools or regulatory requirements change."]
         ]
       }
     }

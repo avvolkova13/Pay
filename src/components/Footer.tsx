@@ -3,6 +3,17 @@ import type { CSSProperties } from "react";
 import { routePairs, type Dictionary, type Locale } from "@/i18n";
 
 export function Footer({ dictionary, locale }: { dictionary: Dictionary; locale: Locale }) {
+  const homeHref = routePairs.home[locale];
+  const sitemapLinks = [
+    [locale === "ru" ? "Главная" : "Home", homeHref],
+    [dictionary.nav.services, `${homeHref}#services`],
+    [dictionary.nav.api, `${homeHref}#api`],
+    [dictionary.nav.industries, `${homeHref}#industries`],
+    [dictionary.nav.security, `${homeHref}#start`],
+    [dictionary.nav.start, `${homeHref}#security`],
+    [dictionary.nav.contact, `${homeHref}#contact`]
+  ] as const;
+
   const legalLinks = [
     [dictionary.footer.legal[0], routePairs.privacy[locale]],
     [dictionary.footer.legal[1], routePairs.terms[locale]],
@@ -14,7 +25,8 @@ export function Footer({ dictionary, locale }: { dictionary: Dictionary; locale:
     <footer className="site-footer">
       <div className="footer-main">
         <div data-reveal="copy">
-          <h2>PAYWAYS INTERNATIONAL - FZCO</h2>
+          <h2>PAYWAYS</h2>
+          <p>{dictionary.footer.company}</p>
           <p>{dictionary.footer.activity}</p>
           <p>{dictionary.footer.registration}</p>
           <p>{dictionary.footer.license}</p>
@@ -23,8 +35,11 @@ export function Footer({ dictionary, locale }: { dictionary: Dictionary; locale:
         </div>
         <div data-reveal="copy" style={{ "--reveal-delay": "110ms" } as CSSProperties}>
           <h3>{dictionary.footer.sitemap}</h3>
-          <Link href={routePairs.home[locale]}>{locale === "ru" ? "Главная" : "Home"}</Link>
-          <Link href={routePairs.checkout[locale]}>{dictionary.checkout.eyebrow}</Link>
+          {sitemapLinks.map(([label, href]) => (
+            <Link key={href} href={href}>
+              {label}
+            </Link>
+          ))}
           {legalLinks.map(([label, href]) => (
             <Link key={href} href={href}>
               {label}
@@ -35,13 +50,15 @@ export function Footer({ dictionary, locale }: { dictionary: Dictionary; locale:
           <h3>{dictionary.footer.methods}</h3>
           <div className="method-badges">
             {dictionary.footer.badges.map((badge) => (
-              <span key={badge}>{badge}</span>
+              <span className="method-logo" key={badge}>
+                {badge}
+              </span>
             ))}
           </div>
         </div>
       </div>
       <div className="footer-bottom" data-reveal="copy" style={{ "--reveal-delay": "260ms" } as CSSProperties}>
-        <span>© 2026 PAYWAYS INTERNATIONAL - FZCO</span>
+        <span>© 2026 PAYWAYS</span>
         <span>Dubai Silicon Oasis, Dubai, UAE</span>
       </div>
     </footer>

@@ -1178,177 +1178,53 @@ p {
   place-items: center;
 }
 
-.service-glyph::before,
-.service-glyph::after,
-.service-glyph i {
-  position: absolute;
-  border: 1px solid rgba(24, 43, 66, 0.42);
+.service-glyph svg {
+  width: 66px;
+  height: 66px;
+  overflow: visible;
 }
 
-.service-glyph::before,
-.service-glyph::after {
-  content: "";
+.service-glyph path,
+.service-glyph rect,
+.service-glyph circle {
+  vector-effect: non-scaling-stroke;
 }
 
-.service-glyph-1 i:nth-child(1) {
-  width: 50px;
-  height: 32px;
-  border-radius: 3px;
+.service-glyph-frame,
+.service-glyph-line {
+  fill: none;
+  stroke: rgba(24, 43, 66, 0.62);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.55;
 }
 
-.service-glyph-1 i:nth-child(2) {
-  top: 24px;
-  left: 13px;
-  width: 40px;
-  height: 6px;
-  border: 0;
-  background: rgba(24, 43, 66, 0.24);
+.service-glyph-accent {
+  fill: none;
+  stroke: var(--blue);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.65;
 }
 
-.service-glyph-1 i:nth-child(3) {
-  right: 8px;
-  bottom: 13px;
-  width: 15px;
-  height: 15px;
-  border: 0;
-  background: var(--blue);
+.service-glyph-node {
+  fill: var(--blue);
+  stroke: none;
 }
 
-.service-glyph-1::before {
-  right: 27px;
-  bottom: 18px;
-  width: 13px;
-  height: 1px;
-  border: 0;
-  background: var(--ink);
+.service-glyph-node-soft {
+  fill: rgba(24, 43, 66, 0.52);
 }
 
-.service-glyph-1::after {
-  left: 14px;
-  bottom: 16px;
-  width: 8px;
-  height: 8px;
-  border-color: rgba(24, 43, 66, 0.42);
+.service-glyph-accent-fill {
+  fill: var(--blue);
+  stroke: none;
 }
 
-.service-glyph-2 i:nth-child(1) {
-  left: 12px;
-  top: 12px;
-  width: 18px;
-  height: 18px;
-}
-
-.service-glyph-2 i:nth-child(2) {
-  right: 12px;
-  top: 12px;
-  width: 18px;
-  height: 18px;
-}
-
-.service-glyph-2 i:nth-child(3) {
-  left: 12px;
-  bottom: 12px;
-  width: 18px;
-  height: 18px;
-  border: 0;
-  background: var(--blue);
-}
-
-.service-glyph-2::before {
-  right: 12px;
-  bottom: 12px;
-  width: 18px;
-  height: 18px;
-  border-color: rgba(24, 43, 66, 0.42);
-}
-
-.service-glyph-2::after {
-  right: 17px;
-  bottom: 17px;
-  width: 8px;
-  height: 8px;
-  border: 0;
-  background: var(--blue);
-}
-
-.service-glyph-3 i {
-  left: 13px;
-  width: 40px;
-  height: 1px;
-  border: 0;
-  background: var(--ink);
-}
-
-.service-glyph-3 i:nth-child(1) {
-  transform: translateY(-15px);
-}
-
-.service-glyph-3 i:nth-child(2) {
-  width: 30px;
-}
-
-.service-glyph-3 i:nth-child(3) {
-  transform: translateY(15px);
-}
-
-.service-glyph-3::before {
-  left: 7px;
-  top: 18px;
-  width: 10px;
-  height: 10px;
-  border: 0;
-  background: var(--blue);
-}
-
-.service-glyph-3::after {
-  right: 7px;
-  bottom: 17px;
-  width: 10px;
-  height: 10px;
-  border: 0;
-  background: var(--blue);
-}
-
-.service-glyph-4 i:nth-child(1) {
-  width: 38px;
-  height: 48px;
-  border-radius: 2px;
-}
-
-.service-glyph-4 i:nth-child(2) {
-  left: 19px;
-  top: 26px;
-  width: 28px;
-  height: 1px;
-  border: 0;
-  background: var(--ink);
-}
-
-.service-glyph-4 i:nth-child(3) {
-  left: 19px;
-  height: 1px;
-  top: 38px;
-  width: 20px;
-  border: 0;
-  background: var(--blue-2);
-}
-
-.service-glyph-4::before {
-  right: 14px;
-  top: 9px;
-  width: 13px;
-  height: 13px;
-  border-width: 0 0 1px 1px;
-  background: #edf5ff;
-}
-
-.service-glyph-4::after {
-  right: 11px;
-  bottom: 10px;
-  width: 14px;
-  height: 14px;
-  border: 0;
-  background: var(--blue);
+.service-card:hover .service-glyph-accent,
+.service-card:hover .service-glyph-line {
+  stroke-dasharray: 80;
+  animation: service-glyph-trace 1200ms cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
 .service-card-body h3 {
@@ -1383,6 +1259,17 @@ p {
 
 .service-card:hover .service-card-action i {
   transform: scaleX(1);
+}
+
+@keyframes service-glyph-trace {
+  0%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dashoffset: -18;
+  }
 }
 
 .api-section {
@@ -1553,7 +1440,8 @@ p {
 }
 
 .api-feature-icon path,
-.api-feature-icon rect {
+.api-feature-icon rect,
+.api-feature-icon circle {
   fill: none;
   stroke: currentColor;
   stroke-linecap: square;
@@ -1564,6 +1452,30 @@ p {
   transition: stroke-dashoffset 760ms cubic-bezier(0.19, 1, 0.22, 1) calc(var(--sweep-delay) + 260ms);
 }
 
+.api-feature-icon circle {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0;
+  transform: scale(0.5);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 360ms ease calc(var(--sweep-delay) + 420ms),
+    transform 520ms cubic-bezier(0.19, 1, 0.22, 1) calc(var(--sweep-delay) + 420ms);
+}
+
+.api-feature-icon .api-icon-accent {
+  stroke: rgba(184, 224, 255, 0.98);
+}
+
+.api-feature-icon .api-icon-node {
+  fill: rgba(184, 224, 255, 0.98);
+}
+
+.api-feature-icon .api-icon-node-soft {
+  opacity: 0;
+}
+
 .api-feature-row.is-visible .api-feature-icon {
   opacity: 1;
   transform: translateX(0) scale(1);
@@ -1572,6 +1484,32 @@ p {
 .api-feature-row.is-visible .api-feature-icon path,
 .api-feature-row.is-visible .api-feature-icon rect {
   stroke-dashoffset: 0;
+}
+
+.api-feature-row.is-visible .api-feature-icon circle {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.api-feature-row.is-visible .api-feature-icon .api-icon-node-soft {
+  opacity: 0.72;
+}
+
+.api-feature-row:hover .api-icon-node:not(.api-icon-node-soft) {
+  animation: api-icon-node-pulse 1150ms cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+@keyframes api-icon-node-pulse {
+  0%,
+  100% {
+    opacity: 0.82;
+    transform: scale(0.94);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
 }
 
 @keyframes api-title-sweep {
@@ -2800,10 +2738,10 @@ pre {
 .pipeline-icon-frame,
 .pipeline-icon-line {
   fill: none;
-  stroke: currentColor;
+  stroke: rgba(238, 244, 255, 0.9);
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 1.75;
+  stroke-width: 1.45;
   transition: stroke-dashoffset 520ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -2813,12 +2751,21 @@ pre {
 }
 
 .pipeline-icon-line {
-  stroke-dasharray: 28;
-  stroke-dashoffset: 28;
+  stroke-dasharray: 42;
+  stroke-dashoffset: 42;
+}
+
+.pipeline-icon-accent {
+  stroke: rgba(91, 184, 255, 0.95);
+  filter: drop-shadow(0 0 6px rgba(40, 145, 255, 0.34));
+}
+
+.pipeline-marker svg circle.pipeline-icon-line {
+  fill: none;
 }
 
 .pipeline-icon-node {
-  fill: currentColor;
+  fill: rgba(91, 184, 255, 0.95);
   opacity: 0;
   transform: scale(0.45);
   transform-box: fill-box;
@@ -2826,6 +2773,10 @@ pre {
   transition:
     opacity 260ms ease 140ms,
     transform 360ms cubic-bezier(0.19, 1, 0.22, 1) 140ms;
+}
+
+.pipeline-icon-node-soft {
+  fill: rgba(238, 244, 255, 0.78);
 }
 
 .pipeline article:hover .pipeline-marker {
@@ -2849,6 +2800,10 @@ pre {
 .pipeline article:hover .pipeline-icon-node {
   opacity: 1;
   transform: scale(1);
+}
+
+.pipeline article:hover .pipeline-icon-accent {
+  animation: pipeline-icon-accent-shift 1150ms cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
 .pipeline h3 {
@@ -2905,6 +2860,19 @@ pre {
 
   68% {
     filter: brightness(1.08);
+  }
+}
+
+@keyframes pipeline-icon-accent-shift {
+  0%,
+  100% {
+    opacity: 0.78;
+    stroke-dashoffset: 0;
+  }
+
+  48% {
+    opacity: 1;
+    stroke-dashoffset: -8;
   }
 }
 
