@@ -3279,70 +3279,32 @@ input[readonly] {
   transform: translateY(-1px);
 }
 
-.method-logo svg {
-  width: 100%;
-  height: 30px;
+.method-logo :is(svg, img) {
+  display: block;
+  width: auto;
+  max-width: 92px;
+  height: 22px;
   overflow: visible;
 }
 
-.payment-wordmark {
-  fill: currentColor;
-  stroke: none;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  letter-spacing: 0;
-}
-
-.payment-wordmark-visa {
-  font-size: 21px;
-  font-style: italic;
-  letter-spacing: 1.2px;
-}
-
-.payment-wordmark-small {
-  font-size: 13px;
-}
-
-.payment-wordmark-pay {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.payment-wordmark-google {
-  fill: var(--blue-2);
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.payment-stroke,
-.payment-accent {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.35;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.payment-muted-stroke {
-  opacity: 0.46;
-}
-
-.payment-accent {
-  stroke: var(--blue-2);
-}
-
-.payment-fill,
-.payment-accent-fill {
+.payment-icon path {
   fill: currentColor;
   stroke: none;
 }
 
-.payment-accent-fill {
-  fill: var(--blue-2);
+.payment-icon-mastercard {
+  max-width: 46px;
 }
 
-.payment-soft-fill {
-  opacity: 0.2;
+.payment-icon-apple-pay,
+.payment-icon-google-pay {
+  max-width: 96px;
+}
+
+.payment-icon-unionpay {
+  max-width: 84px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .footer-bottom {
