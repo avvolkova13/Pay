@@ -9,12 +9,12 @@ export type LegalSlug =
 export const locales: Locale[] = ["ru", "en"];
 
 export const routePairs = {
-  home: { ru: "/", en: "/en" },
-  checkout: { ru: "/checkout", en: "/en/checkout" },
-  privacy: { ru: "/privacy-policy", en: "/en/privacy-policy" },
-  terms: { ru: "/terms-of-service", en: "/en/terms-of-service" },
-  aml: { ru: "/aml-kyc-policy", en: "/en/aml-kyc-policy" },
-  cookies: { ru: "/cookie-policy", en: "/en/cookie-policy" }
+  home: { ru: "/ru", en: "/" },
+  checkout: { ru: "/ru/checkout", en: "/checkout" },
+  privacy: { ru: "/ru/privacy-policy", en: "/privacy-policy" },
+  terms: { ru: "/ru/terms-of-service", en: "/terms-of-service" },
+  aml: { ru: "/ru/aml-kyc-policy", en: "/aml-kyc-policy" },
+  cookies: { ru: "/ru/cookie-policy", en: "/cookie-policy" }
 } as const satisfies Record<string, Record<Locale, string>>;
 
 export function alternateLocale(locale: Locale) {
@@ -63,29 +63,29 @@ export const dictionaries = {
     services: {
       eyebrow: "Услуги",
       title: "Платежные решения",
-      text: "Все необходимые инструменты для приема платежей, выплат и работы с B2B-расчетами — в одной платформе.",
+      text: "Все необходимые инструменты для приема платежей, выплат и автоматизации расчетов — с личным кабинетом, API и удобным управлением в одном интерфейсе.",
       items: [
         {
-          title: "Card Processing",
+          title: "Прием платежей",
           text: "Принимайте платежи банковскими картами через надежную платежную инфраструктуру с быстрым подключением и технической поддержкой."
         },
         {
-          title: "QR Payments",
+          title: "Оплата по QR-коду",
           text: "Принимайте оплату по QR-кодам для онлайн-сервисов, мобильных приложений и офлайн-бизнеса."
         },
         {
-          title: "Mass Payouts",
+          title: "Массовые выплаты",
           text: "Автоматизируйте массовые выплаты партнерам, исполнителям и клиентам через единый платежный процесс."
         },
         {
-          title: "B2B Invoicing",
+          title: "Выставление счетов",
           text: "Создавайте и отправляйте счета юридическим лицам с прозрачным статусом оплаты и удобным управлением расчетами."
         }
       ]
     },
     api: {
       eyebrow: "Интеграция",
-      title: "Developer-Friendly API",
+      title: "Удобное API для интеграции",
       text: "Подключайте платежную инфраструктуру через понятный API, управляйте операциями в личном кабинете и запускайте платежные сценарии без сложной интеграции.",
       points: [
         ["Быстрая интеграция", "Готовый API, подробная документация и понятный процесс подключения позволяют быстрее запустить прием платежей."],
@@ -107,12 +107,11 @@ export const dictionaries = {
       eyebrow: "Для вашего бизнеса",
       title: "Решения для разных отраслей",
       items: [
-        ["E-commerce", ""],
-        ["Retail", ""],
-        ["Online Education", ""],
-        ["Travel", ""],
-        ["Fintech", ""],
-        ["Subscription Services", ""]
+        ["E-commerce", "Прием платежей для интернет-магазинов, маркетплейсов и онлайн-сервисов с быстрым checkout и понятным управлением операциями."],
+        ["Розничная торговля", "Карточные, NFC и QR-платежи для офлайн-точек и гибридной торговли в рамках единой платежной инфраструктуры."],
+        ["Рестораны и отели", "Оплата заказов, бронирований, проживания и дополнительных услуг через удобные сценарии для гостей и персонала."],
+        ["Туризм и путешествия", "Платежи за бронирования, туры и сервисные сборы с поддержкой разных способов оплаты и международных клиентов."],
+        ["Другие виды бизнеса", "Решения для подписочных сервисов, цифровых платформ, онлайн-школ и команд с массовыми выплатами."]
       ]
     },
     security: {
@@ -137,10 +136,10 @@ export const dictionaries = {
       title: "Безопасность и доверие",
       text: "",
       steps: [
-        ["ЗАЩИТА ДАННЫХ", "Современные механизмы защиты помогают обеспечить безопасность платежей и данных клиентов."],
-        ["ПРОВЕРКА ПАРТНЕРОВ", "Процедуры проверки помогают снизить риски и обеспечить надежность платежной инфраструктуры."],
-        ["МЕЖДУНАРОДНЫЕ СТАНДАРТЫ", "Работа строится с учетом международных требований к безопасности и соответствию нормативным требованиям."],
-        ["НАДЕЖНАЯ ИНФРАСТРУКТУРА", "Стабильная архитектура и постоянный мониторинг обеспечивают бесперебойную работу платежных сервисов."]
+        ["ЗАЩИТА ДАННЫХ", "Безопасная обработка платежной информации, современные методы шифрования и многоуровневая система защиты помогают обеспечить высокий уровень безопасности данных."],
+        ["AML И УПРАВЛЕНИЕ РИСКАМИ", "Встроенные AML-проверки и инструменты мониторинга операций помогают соблюдать требования комплаенса и минимизировать финансовые риски."],
+        ["PCI DSS И МЕЖДУНАРОДНЫЕ СТАНДАРТЫ", "Платформа разрабатывается с учетом требований PCI DSS и международных стандартов безопасности платежной индустрии, обеспечивая надежную обработку платежных данных."],
+        ["НАДЕЖНАЯ ИНФРАСТРУКТУРА", "Высокая отказоустойчивость, масштабируемая архитектура и постоянный мониторинг обеспечивают стабильную работу сервиса даже при высокой нагрузке."]
       ]
     },
     form: {
@@ -151,7 +150,21 @@ export const dictionaries = {
       email: "Бизнес-email",
       phone: "Телефон",
       website: "URL сайта",
-      message: "Сообщение",
+      paymentMethods: {
+        label: "Какие платежные методы вас интересуют?",
+        options: ["Карточные платежи", "QR-платежи", "Массовые выплаты", "B2B-счета"]
+      },
+      businessType: {
+        label: "Укажите тип вашего бизнеса",
+        options: ["Retail", "E-commerce", "Подписочная модель", "Продажа цифровых товаров"],
+        other: "Другое",
+        otherPlaceholder: "Опишите тип бизнеса"
+      },
+      preferredContact: {
+        label: "Какой способ связи для вас предпочтителен?",
+        options: ["Email", "Телефон"]
+      },
+      message: "Комментарий",
       submit: "Отправить заявку",
       success: "Заявка принята. Мы свяжемся с вами, чтобы обсудить подключение и параметры платежного решения.",
       checkout: "Перейти к оплате"
@@ -179,7 +192,7 @@ export const dictionaries = {
       supportLabel: "Контакты поддержки:",
       sitemap: "Карта сайта",
       methods: "Платежные методы",
-      badges: ["Visa", "Mastercard", "Apple Pay", "Google Pay"],
+      badges: ["Visa", "Mastercard", "Мир", "Apple Pay", "Google Pay", "PCI DSS"],
       legal: ["Политика конфиденциальности", "Terms of Service", "AML/KYC Policy", "Cookie Policy"]
     },
     legal: {
@@ -270,7 +283,7 @@ export const dictionaries = {
     services: {
       eyebrow: "Our Services",
       title: "Payment solutions for international businesses",
-      text: "Services for payment acceptance, QR checkout, payout operations and B2B invoicing through a single provider relationship.",
+      text: "All the tools needed for payment acceptance, payouts and settlement automation, with an account dashboard, API and convenient management in one interface.",
       items: [
         {
           title: "Card Processing",
@@ -314,12 +327,11 @@ export const dictionaries = {
       eyebrow: "Solutions by Industry",
       title: "Payment scenarios for different sales models",
       items: [
-        ["E-commerce", "Card payments, checkout flow and clear onboarding for online stores."],
-        ["Retail", "QR scenarios and payment operations for physical and hybrid commerce."],
-        ["Online Education", "Payments for courses, subscriptions, intensives and education packages."],
-        ["Travel", "Payment flows for bookings, agency models and service fees."],
-        ["Fintech", "Payment scenarios for digital finance products after model review."],
-        ["Subscription Services", "Recurring commercial relationships without publishing unconfirmed tariffs."]
+        ["E-commerce", "Payment acceptance for online stores, marketplaces and digital services with smooth checkout and clear transaction management."],
+        ["Retail", "Card, NFC and QR payments for physical locations and hybrid commerce through one payment infrastructure."],
+        ["Restaurants & Hotels", "Payment scenarios for orders, bookings, stays and guest services, built for efficient daily operations."],
+        ["Travel", "Payments for bookings, tours and service fees with multiple payment methods for local and international clients."],
+        ["Other Types of Business", "Payment solutions for subscription services, digital platforms, online schools and teams managing mass payouts."]
       ]
     },
     security: {
@@ -344,10 +356,10 @@ export const dictionaries = {
       title: "Security & Trust",
       text: "",
       steps: [
-        ["DATA PROTECTION", "Modern protection mechanisms help ensure the security of payments and client data."],
-        ["PARTNER REVIEW", "Review procedures help reduce risks and support reliable payment infrastructure."],
-        ["INTERNATIONAL STANDARDS", "The work is built with international security and compliance requirements in mind."],
-        ["RELIABLE INFRASTRUCTURE", "Stable architecture and continuous monitoring support uninterrupted payment services."]
+        ["DATA PROTECTION", "Secure processing of payment information, modern encryption methods and multi-layer protection help maintain a high level of data security."],
+        ["AML & RISK MANAGEMENT", "Built-in AML checks and transaction monitoring tools help support compliance requirements and reduce financial risk."],
+        ["PCI DSS & INTERNATIONAL STANDARDS", "The platform is developed with PCI DSS requirements and international payment security standards in mind, supporting reliable handling of payment data."],
+        ["RELIABLE INFRASTRUCTURE", "High fault tolerance, scalable architecture and continuous monitoring help keep the service stable even under heavy load."]
       ]
     },
     form: {
@@ -358,7 +370,21 @@ export const dictionaries = {
       email: "Business Email",
       phone: "Phone",
       website: "Website URL",
-      message: "Message",
+      paymentMethods: {
+        label: "Which payment methods are you interested in?",
+        options: ["Card Processing", "QR Payments", "Mass Payouts", "B2B Invoicing"]
+      },
+      businessType: {
+        label: "Select your business type",
+        options: ["Retail", "E-commerce", "Subscription model", "Digital goods"],
+        other: "Other",
+        otherPlaceholder: "Describe your business type"
+      },
+      preferredContact: {
+        label: "Preferred contact method",
+        options: ["Email", "Phone"]
+      },
+      message: "Comment",
       submit: "Submit application",
       success: "The application has been received. We will contact you to discuss onboarding and payment solution parameters.",
       checkout: "Proceed to checkout"
@@ -386,7 +412,7 @@ export const dictionaries = {
       supportLabel: "Support contacts:",
       sitemap: "Sitemap",
       methods: "Payment methods",
-      badges: ["Visa", "Mastercard", "Apple Pay", "Google Pay"],
+      badges: ["Visa", "Mastercard", "Mir", "Apple Pay", "Google Pay", "PCI DSS"],
       legal: ["Privacy Policy", "Terms of Service", "AML/KYC Policy", "Cookie Policy"]
     },
     legal: {
@@ -449,5 +475,5 @@ export function getDictionary(locale: Locale) {
 }
 
 export function localePrefix(locale: Locale) {
-  return locale === "en" ? "/en" : "";
+  return locale === "ru" ? "/ru" : "";
 }

@@ -2,7 +2,7 @@
 
 import { type MouseEvent, type PointerEvent, type SyntheticEvent, useEffect, useRef } from "react";
 
-export function HeroTitle({ lines }: { lines: string[] }) {
+export function HeroTitle({ lines, variant = "default" }: { lines: string[]; variant?: "default" | "compact" }) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const frameRef = useRef<number | null>(null);
   const isFinePointerRef = useRef(false);
@@ -116,7 +116,7 @@ export function HeroTitle({ lines }: { lines: string[] }) {
 
   return (
     <h1
-      className="hero-title-effect"
+      className={`hero-title-effect ${variant === "compact" ? "hero-title-effect-compact" : ""}`}
       data-reveal="hero-title"
       onMouseEnter={() => setActive("1")}
       onPointerEnter={() => setActive("1")}

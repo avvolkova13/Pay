@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description: "Corporate website for PAYWAYS INTERNATIONAL - FZCO payment services."
 };
 
-export default function RootLayout({
+export default function RuLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body>
         <SiteLoader />
         <MotionReveal />

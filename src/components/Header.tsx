@@ -191,9 +191,6 @@ export function Header({ dictionary, locale, routeKey }: HeaderProps) {
               onClick={() => setMenuOpen(false)}
             />
           ))}
-          <Link href={routePairs.checkout[locale]} onClick={() => setMenuOpen(false)}>
-            {dictionary.checkout.eyebrow}
-          </Link>
           <button
             className="mobile-login-button text-roll-button"
             type="button"

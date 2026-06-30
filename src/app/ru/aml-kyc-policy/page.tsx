@@ -4,13 +4,13 @@ import { LegalPage } from "@/components/LegalPage";
 import { getDictionary } from "@/i18n";
 
 export default function Page() {
-  const dictionary = getDictionary("en");
+  const dictionary = getDictionary("ru");
 
   return (
     <>
-      <Header dictionary={dictionary} locale="en" routeKey="cookies" />
-      <LegalPage dictionary={dictionary} slug="cookie-policy" />
-      <Footer dictionary={dictionary} locale="en" />
+      <Header dictionary={dictionary} locale="ru" routeKey="aml" />
+      <LegalPage dictionary={dictionary} slug="aml-kyc-policy" />
+      <Footer dictionary={dictionary} locale="ru" />
     </>
   );
 }

@@ -49,7 +49,7 @@ export function IndustryMarquee({
   reveal?: boolean;
   revealDelay?: string;
 }) {
-  const repeatedItems = [...items, ...items];
+  const repeatedItems = [...items, ...items, ...items, ...items];
 
   return (
     <div
@@ -145,18 +145,13 @@ export function ApiFeatureRows({ items }: { items: readonly (string | readonly [
                   </>
                 ) : (
                   <>
-                    <path d="M24 24 13 16" />
-                    <path d="M24 24 35 16" />
-                    <path d="M24 24 14 34" />
-                    <path d="M24 24 35 34" />
-                    <path d="M18 39h12" />
-                    <path className="api-icon-accent" d="M30 39h6" />
-                    <path className="api-icon-accent" d="m31.8 26.8 2.2 2.1 4.2-5" />
-                    <circle className="api-icon-node" cx="24" cy="24" r="3" />
-                    <circle className="api-icon-node api-icon-node-soft" cx="13" cy="16" r="1.65" />
-                    <circle className="api-icon-node api-icon-node-soft" cx="35" cy="16" r="1.65" />
-                    <circle className="api-icon-node api-icon-node-soft" cx="14" cy="34" r="1.65" />
-                    <circle className="api-icon-node api-icon-node-soft" cx="35" cy="34" r="1.65" />
+                    <rect x="9.5" y="12.5" width="27" height="21" rx="2" />
+                    <path d="M9.5 18.5h27" />
+                    <path d="M19 37.5h12" />
+                    <path d="M25 33.5v4" />
+                    <path d="M15.5 25h6.5" />
+                    <path d="M15.5 29h10" />
+                    <path className="api-icon-accent" d="M15.5 22h4.5" />
                   </>
                 )}
               </svg>
@@ -487,31 +482,69 @@ export function ApplicationForm({ dictionary, locale }: { dictionary: Dictionary
 
   return (
     <form className="application-form" data-reveal="section" onSubmit={onSubmit}>
-      <label data-reveal="field">
+      <fieldset className="form-choice-group wide-field" data-reveal="field">
+        <legend>{dictionary.form.paymentMethods.label}</legend>
+        <div className="form-choice-list">
+          {dictionary.form.paymentMethods.options.map((option) => (
+            <label className="form-choice" key={option}>
+              <input name="paymentMethods" type="checkbox" value={option} />
+              <span>{option}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      <fieldset className="form-choice-group wide-field" data-reveal="field" style={{ "--reveal-delay": "65ms" } as CSSProperties}>
+        <legend>{dictionary.form.businessType.label}</legend>
+        <div className="form-choice-list">
+          {dictionary.form.businessType.options.map((option) => (
+            <label className="form-choice" key={option}>
+              <input name="businessType" type="radio" value={option} required />
+              <span>{option}</span>
+            </label>
+          ))}
+          <label className="form-choice form-choice-other">
+            <input name="businessType" type="radio" value={dictionary.form.businessType.other} required />
+            <span>{dictionary.form.businessType.other}</span>
+            <input name="businessTypeOther" placeholder={dictionary.form.businessType.otherPlaceholder} />
+          </label>
+        </div>
+      </fieldset>
+      <label data-reveal="field" style={{ "--reveal-delay": "130ms" } as CSSProperties}>
         {dictionary.form.name}
         <input name="name" required />
       </label>
-      <label data-reveal="field" style={{ "--reveal-delay": "65ms" } as CSSProperties}>
+      <label data-reveal="field" style={{ "--reveal-delay": "195ms" } as CSSProperties}>
         {dictionary.form.email}
         <input name="email" type="email" required />
       </label>
-      <label data-reveal="field" style={{ "--reveal-delay": "130ms" } as CSSProperties}>
+      <label data-reveal="field" style={{ "--reveal-delay": "260ms" } as CSSProperties}>
         {dictionary.form.phone}
         <input name="phone" type="tel" required />
       </label>
-      <label data-reveal="field" style={{ "--reveal-delay": "195ms" } as CSSProperties}>
+      <label data-reveal="field" style={{ "--reveal-delay": "325ms" } as CSSProperties}>
         {dictionary.form.website}
         <input name="website" type="url" placeholder="https://" />
       </label>
-      <label className="wide-field" data-reveal="field" style={{ "--reveal-delay": "260ms" } as CSSProperties}>
+      <fieldset className="form-choice-group wide-field" data-reveal="field" style={{ "--reveal-delay": "390ms" } as CSSProperties}>
+        <legend>{dictionary.form.preferredContact.label}</legend>
+        <div className="form-choice-list form-choice-list-compact">
+          {dictionary.form.preferredContact.options.map((option) => (
+            <label className="form-choice" key={option}>
+              <input name="preferredContact" type="radio" value={option} required />
+              <span>{option}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      <label className="wide-field" data-reveal="field" style={{ "--reveal-delay": "455ms" } as CSSProperties}>
         {dictionary.form.message}
-        <textarea name="message" rows={5} required />
+        <textarea name="message" rows={5} />
       </label>
       <button
         className="primary-button wide-field text-roll-button"
         type="submit"
         data-reveal="button"
-        style={{ "--reveal-delay": "325ms" } as CSSProperties}
+        style={{ "--reveal-delay": "520ms" } as CSSProperties}
       >
         <span className="button-text-roll" aria-hidden="true" data-text={dictionary.form.submit}>
           <span>{dictionary.form.submit}</span>

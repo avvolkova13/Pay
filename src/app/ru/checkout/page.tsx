@@ -4,13 +4,13 @@ import { Header } from "@/components/Header";
 import { getDictionary } from "@/i18n";
 
 export default function Page() {
-  const dictionary = getDictionary("en");
+  const dictionary = getDictionary("ru");
 
   return (
     <>
-      <Header dictionary={dictionary} locale="en" routeKey="checkout" />
+      <Header dictionary={dictionary} locale="ru" routeKey="checkout" />
       <CheckoutPage dictionary={dictionary} />
-      <Footer dictionary={dictionary} locale="en" />
+      <Footer dictionary={dictionary} locale="ru" />
     </>
   );
 }

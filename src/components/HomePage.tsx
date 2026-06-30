@@ -7,6 +7,8 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
   const heroTitleLines =
     locale === "ru" && dictionary.hero.title === "Принимайте платежи по всему миру"
       ? ["Принимайте платежи", "по всему миру"]
+      : locale === "en" && dictionary.hero.title === "Payment infrastructure for international business"
+        ? ["Payment infrastructure", "for international business"]
       : [dictionary.hero.title];
 
   return (
@@ -15,7 +17,7 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
         <div className="hero-noise" aria-hidden="true" />
         <div className="section-shell hero-grid">
           <div className="hero-copy">
-            <HeroTitle lines={heroTitleLines} />
+            <HeroTitle lines={heroTitleLines} variant={locale === "en" ? "compact" : "default"} />
             <p className="hero-lede" data-reveal="copy" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
               {dictionary.hero.text}
             </p>
@@ -250,9 +252,9 @@ function ServiceGlyph({ index }: { index: number }) {
             <path className="service-glyph-line" d="M12 26h42" />
             <path className="service-glyph-accent" d="M19 35h8" />
             <path className="service-glyph-line" d="M19 40h14" />
-            <path className="service-glyph-line" d="M41 35c3.1 0 5.4 2.1 5.4 5.2" />
-            <path className="service-glyph-accent" d="m44.8 38.7 2 1.9 3.8-4.6" />
-            <circle className="service-glyph-node" cx="48.6" cy="40.4" r="1.7" />
+            <path className="service-glyph-line" d="M40.5 36.5h5.8" />
+            <path className="service-glyph-accent" d="m42.7 42.3 2.4 2.2 5.4-6.3" />
+            <circle className="service-glyph-node" cx="50.5" cy="22.3" r="1.45" />
           </>
         ) : index === 1 ? (
           <>
@@ -290,7 +292,7 @@ function ServiceGlyph({ index }: { index: number }) {
             <path className="service-glyph-line" d="M24 34h13" />
             <path className="service-glyph-line" d="M24 40h10" />
             <path className="service-glyph-accent" d="m36.4 45.4 2.4 2.3 5.1-6" />
-            <circle className="service-glyph-node" cx="41.2" cy="44.8" r="2" />
+            <circle className="service-glyph-node" cx="23.5" cy="21.5" r="1.7" />
             <path className="service-glyph-line" d="M24 47h8" />
           </>
         )}

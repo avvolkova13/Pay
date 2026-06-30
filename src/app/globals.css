@@ -542,6 +542,12 @@ p {
   cursor: default;
 }
 
+.hero-copy h1.hero-title-effect-compact {
+  max-width: min(100%, 1160px);
+  font-size: clamp(4.3rem, 6.55vw, 5.78rem);
+  line-height: 0.94;
+}
+
 .hero-title-layer {
   display: block;
 }
@@ -1732,7 +1738,7 @@ pre {
   grid-column: 1 / -1;
   position: relative;
   width: 100vw;
-  height: 154px;
+  height: 190px;
   margin: 48px 0 0 calc(50% - 50vw);
   overflow: hidden;
   border-top: 1px dotted rgba(95, 114, 139, 0.44);
@@ -1749,16 +1755,12 @@ pre {
   inset: 0 auto 0 0;
   display: flex;
   width: max-content;
-  animation: marquee 34s linear infinite;
-}
-
-.industry-marquee:hover .industry-track {
-  animation-play-state: paused;
+  animation: marquee 68s linear infinite;
 }
 
 .industry-pill {
-  flex: 0 0 360px;
-  min-height: 154px;
+  flex: 0 0 clamp(500px, 38vw, 580px);
+  min-height: 190px;
   padding: 26px;
   border-right: 1px dotted rgba(95, 114, 139, 0.44);
   background: rgba(255, 255, 255, 0.52);
@@ -1772,7 +1774,7 @@ pre {
 }
 
 .industry-pill p {
-  margin: 0;
+  margin: 12px 0 0;
   color: var(--muted);
   line-height: 1.58;
 }
@@ -2964,6 +2966,66 @@ input[readonly] {
   cursor: not-allowed;
 }
 
+.form-choice-group {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+.form-choice-group legend {
+  padding: 0;
+  color: var(--ink-2);
+  font-size: 0.88rem;
+  font-weight: 690;
+}
+
+.form-choice-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.form-choice-list-compact {
+  grid-template-columns: repeat(2, minmax(0, 180px));
+}
+
+.form-choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid rgba(18, 28, 42, 0.18);
+  background: #f9fbfd;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 620;
+}
+
+.form-choice input[type="checkbox"],
+.form-choice input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  accent-color: var(--blue);
+  box-shadow: none;
+}
+
+.form-choice-other {
+  align-items: center;
+}
+
+.form-choice-other input[name="businessTypeOther"] {
+  min-height: 38px;
+  margin-left: auto;
+  padding: 0 10px;
+}
+
 .wide-field {
   grid-column: 1 / -1;
 }
@@ -3247,18 +3309,20 @@ input[readonly] {
 }
 
 .method-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: minmax(0, 176px);
+  gap: 10px;
+  width: max-content;
+  max-width: 100%;
 }
 
 .method-logo {
   display: inline-flex;
-  width: 118px;
-  height: 40px;
+  width: 100%;
+  height: 54px;
   align-items: center;
   justify-content: center;
-  padding: 6px 12px;
+  padding: 8px 14px;
   border: 1px solid var(--line-dark);
   background: rgba(255, 255, 255, 0.015);
   color: rgba(238, 246, 255, 0.82);
@@ -3282,8 +3346,10 @@ input[readonly] {
 .method-logo :is(svg, img) {
   display: block;
   width: auto;
-  max-width: 92px;
-  height: 22px;
+  max-width: 136px;
+  height: 30px;
+  max-height: 30px;
+  object-fit: contain;
   overflow: visible;
 }
 
@@ -3292,13 +3358,43 @@ input[readonly] {
   stroke: none;
 }
 
+.payment-wordmark {
+  fill: currentColor;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 22px;
+  font-weight: 760;
+  letter-spacing: 0.02em;
+}
+
+.payment-wordmark-small {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+}
+
 .payment-icon-mastercard {
-  max-width: 46px;
+  max-width: 92px;
 }
 
 .payment-icon-apple-pay,
 .payment-icon-google-pay {
-  max-width: 96px;
+  max-width: 120px;
+}
+
+.payment-icon-visa {
+  max-width: 106px;
+}
+
+.payment-icon-apple-pay {
+  max-width: 108px;
+  filter: brightness(0) invert(1);
+}
+
+.payment-icon-mir {
+  max-width: 108px;
+}
+
+.payment-icon-pci-dss {
+  max-width: 122px;
 }
 
 .footer-bottom {
@@ -4323,6 +4419,8 @@ input[readonly] {
   .service-map,
   .event-grid,
   .application-form,
+  .form-choice-list,
+  .form-choice-list-compact,
   .form-row,
   .footer-main {
     grid-template-columns: 1fr;
@@ -4418,7 +4516,7 @@ input[readonly] {
   }
 
   .industry-pill {
-    flex-basis: 290px;
+    flex-basis: min(440px, 86vw);
   }
 
   .pipeline article {
