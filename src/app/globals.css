@@ -3235,6 +3235,13 @@ input[readonly] {
   color: rgba(255, 255, 255, 0.76);
 }
 
+.site-footer .footer-inline-link {
+  display: inline;
+  min-height: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
 .site-footer a:hover {
   color: var(--blue-2);
 }
@@ -3245,12 +3252,41 @@ input[readonly] {
   gap: 8px;
 }
 
-.method-badges span {
-  padding: 9px 10px;
+.method-logo {
+  display: inline-flex;
+  width: 78px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
   border: 1px solid var(--line-dark);
   color: var(--blue-2);
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 0.78rem;
+}
+
+.method-logo svg {
+  width: 100%;
+  height: 28px;
+  overflow: visible;
+}
+
+.method-logo path,
+.method-logo circle,
+.method-logo rect {
+  fill: none;
+  stroke: rgba(238, 246, 255, 0.78);
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.method-logo rect {
+  rx: 0.6px;
+}
+
+.method-logo path:nth-last-child(1),
+.method-logo circle:nth-child(2),
+.method-logo rect:nth-child(5) {
+  stroke: var(--blue-2);
 }
 
 .footer-bottom {
@@ -4134,11 +4170,13 @@ input[readonly] {
 
   .hero-copy h1 {
     max-width: 100%;
-    font-size: clamp(2.05rem, 10vw, 2.45rem);
-    line-height: 0.95;
+    font-size: clamp(1.38rem, 6.4vw, 1.52rem);
+    line-height: 1;
+    overflow-wrap: anywhere;
   }
 
   .hero-title-line {
+    display: block;
     white-space: normal;
   }
 
@@ -4152,15 +4190,17 @@ input[readonly] {
   .not-found h1,
   .industries-shell h2,
   .start-intro h2 {
-    font-size: 2.45rem;
+    font-size: clamp(1.72rem, 7.2vw, 1.95rem);
     line-height: 1;
+    overflow-wrap: anywhere;
   }
 
   .service-card-body h3,
   .checkout-summary h2,
   .site-footer h2 {
-    font-size: 2.45rem;
+    font-size: clamp(1.72rem, 7.2vw, 1.95rem);
     line-height: 1;
+    overflow-wrap: anywhere;
   }
 
   .pipeline h3 {
@@ -4178,6 +4218,16 @@ input[readonly] {
     font-size: 1rem;
   }
 
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-cta {
+    width: min(100%, 260px);
+    padding: 0 18px;
+    text-align: center;
+  }
+
   .services-section .section-heading.compact {
     grid-template-columns: auto 1fr;
     column-gap: 18px;
@@ -4192,6 +4242,10 @@ input[readonly] {
   .api-copy h2,
   .api-copy > p:not(.eyebrow) {
     grid-column: 1 / -1;
+  }
+
+  .api-feature-copy h3 {
+    overflow-wrap: anywhere;
   }
 
   .services-section .section-heading h2,
