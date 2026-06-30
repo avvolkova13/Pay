@@ -2,36 +2,71 @@
 
 import type { CSSProperties, MouseEvent, PointerEvent, SyntheticEvent } from "react";
 import { useEffect, useRef } from "react";
-import { type Dictionary, type Locale } from "@/i18n";
+import { SparklesCore } from "../ui/sparkles";
+import styles from "./HeroPlayground.module.css";
 
-export function HeroPlaygroundPage({ dictionary, locale }: { dictionary: Dictionary; locale: Locale }) {
-  const heroTitleLines =
-    locale === "ru" && dictionary.hero.title === "Принимайте платежи по всему миру"
-      ? ["Принимайте платежи", "по всему миру"]
-      : [dictionary.hero.title];
+type HeroPlaygroundProps = {
+  titleLines?: string[];
+  text?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+};
 
+const defaultTitleLines = ["Принимайте платежи", "по всему миру"];
+
+export function HeroPlayground({
+  titleLines = defaultTitleLines,
+  text = "Подключайте карточные платежи, QR-оплату, массовые выплаты и B2B-инвойсы через единую платформу. Безопасная инфраструктура, удобная интеграция и сопровождение на каждом этапе подключения.",
+  ctaLabel = "Начать сотрудничество",
+  ctaHref = "#application"
+}: HeroPlaygroundProps) {
   return (
-    <main>
-      <section className="hero-section">
-        <div className="hero-noise" aria-hidden="true" />
-        <div className="section-shell hero-grid">
-          <div className="hero-copy">
-            <PlaygroundHeroTitle lines={heroTitleLines} />
-            <p className="hero-lede" data-reveal="copy" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
-              {dictionary.hero.text}
+    <main className={styles.playground}>
+      <section className={styles.heroSection}>
+        <div className={styles.heroNoise} aria-hidden="true" />
+        <div className={`${styles.sectionShell} ${styles.heroGrid}`}>
+          <div className={styles.heroCopy}>
+            <PlaygroundHeroTitle lines={titleLines} />
+            <p
+              className={`${styles.heroLede} ${styles.revealCopy}`}
+              style={{ "--reveal-delay": "120ms" } as CSSProperties}
+            >
+              {text}
             </p>
-            <div className="hero-actions" data-reveal="button" style={{ "--reveal-delay": "220ms" } as CSSProperties}>
-              <a className="primary-button hero-cta text-roll-button" href="#application" aria-label={dictionary.hero.primary}>
-                <span className="button-text-roll" aria-hidden="true" data-text={dictionary.hero.primary}>
-                  <span>{dictionary.hero.primary}</span>
-                  <span>{dictionary.hero.primary}</span>
+            <div
+              className={`${styles.heroActions} ${styles.revealButton}`}
+              style={{ "--reveal-delay": "220ms" } as CSSProperties}
+            >
+              <a className={`${styles.primaryButton} ${styles.heroCta} ${styles.textRollButton}`} href={ctaHref} aria-label={ctaLabel}>
+                <span className={styles.buttonTextRoll} aria-hidden="true" data-text={ctaLabel}>
+                  <span>{ctaLabel}</span>
+                  <span>{ctaLabel}</span>
                 </span>
               </a>
             </div>
+            <SparklesShelf />
           </div>
         </div>
       </section>
     </main>
+  );
+}
+
+function SparklesShelf() {
+  return (
+    <div className={`${styles.sparklesShelf} ${styles.revealSparkles}`} aria-hidden="true">
+      <div className={styles.shelfGlow} />
+      <div className={styles.shelfLine} />
+      <SparklesCore
+        background="transparent"
+        minSize={0.25}
+        maxSize={0.8}
+        particleDensity={420}
+        className={styles.sparklesCore}
+        particleColor="#EAF7FF"
+      />
+      <div className={styles.sparklesMask} />
+    </div>
   );
 }
 
@@ -142,15 +177,14 @@ function PlaygroundHeroTitle({ lines }: { lines: string[] }) {
 
   const renderLines = () =>
     lines.map((line) => (
-      <span className="hero-title-line" key={line}>
+      <span className={styles.heroTitleLine} key={line}>
         {line}
       </span>
     ));
 
   return (
     <h1
-      className="hero-title-effect"
-      data-reveal="hero-title"
+      className={`${styles.heroTitleEffect} ${styles.revealHeroTitle}`}
       onMouseEnter={() => setActive("1")}
       onPointerEnter={() => setActive("1")}
       onPointerLeave={deactivateOnTrueExit}
@@ -161,25 +195,25 @@ function PlaygroundHeroTitle({ lines }: { lines: string[] }) {
       onMouseOut={deactivateOnTrueExit}
       ref={titleRef}
     >
-      <span aria-hidden="true" className="hero-title-layer hero-title-backdrop">
+      <span aria-hidden="true" className={`${styles.heroTitleLayer} ${styles.heroTitleBackdrop}`}>
         {renderLines()}
       </span>
-      <span aria-hidden="true" className="hero-title-layer hero-title-wash">
+      <span aria-hidden="true" className={`${styles.heroTitleLayer} ${styles.heroTitleWash}`}>
         {renderLines()}
       </span>
-      <span className="hero-title-layer hero-title-base">{renderLines()}</span>
-      <span aria-hidden="true" className="hero-gradient-blur">
+      <span className={`${styles.heroTitleLayer} ${styles.heroTitleBase}`}>{renderLines()}</span>
+      <span aria-hidden="true" className={styles.heroGradientBlur}>
         <i />
         <i />
         <i />
       </span>
-      <span aria-hidden="true" className="hero-title-layer hero-title-spotlight">
+      <span aria-hidden="true" className={`${styles.heroTitleLayer} ${styles.heroTitleSpotlight}`}>
         {renderLines()}
       </span>
-      <span aria-hidden="true" className="hero-title-layer hero-title-liquid">
+      <span aria-hidden="true" className={`${styles.heroTitleLayer} ${styles.heroTitleLiquid}`}>
         {renderLines()}
       </span>
-      <span aria-hidden="true" className="hero-title-layer hero-title-aura">
+      <span aria-hidden="true" className={`${styles.heroTitleLayer} ${styles.heroTitleAura}`}>
         {renderLines()}
       </span>
     </h1>

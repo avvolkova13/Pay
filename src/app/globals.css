@@ -4333,6 +4333,26 @@ input[readonly] {
     min-height: 330px;
   }
 
+  .service-card::before {
+    display: none;
+  }
+
+  .service-card-body {
+    position: relative;
+    padding-top: 28px;
+  }
+
+  .service-card-body::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    content: "";
+    background-image: linear-gradient(90deg, rgba(87, 111, 139, 0.34) 28%, transparent 0);
+    background-size: 13px 1px;
+  }
+
   .api-feature-list {
     padding: 10px 12px 34px;
   }
@@ -4346,7 +4366,13 @@ input[readonly] {
   }
 
   .api-feature-row h3 {
-    font-size: clamp(1.75rem, 8.2vw, 2.25rem);
+    font-size: clamp(1.58rem, 7.1vw, 2.25rem);
+  }
+
+  .api-feature-row:nth-child(3) h3 {
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .api-feature-row p {
