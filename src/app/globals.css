@@ -3301,12 +3301,6 @@ input[readonly] {
   max-width: 96px;
 }
 
-.payment-icon-unionpay {
-  max-width: 84px;
-  height: 24px;
-  object-fit: contain;
-}
-
 .footer-bottom {
   display: flex;
   justify-content: space-between;
