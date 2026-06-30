@@ -3,71 +3,76 @@ import type { CSSProperties } from "react";
 import { routePairs, type Dictionary, type Locale } from "@/i18n";
 
 function PaymentMethodLogo({ label }: { label: string }) {
+  if (label === "Visa") {
+    return (
+      <svg viewBox="0 0 120 36" focusable="false" aria-hidden="true">
+        <text className="payment-wordmark payment-wordmark-visa" x="18" y="24">
+          VISA
+        </text>
+        <path className="payment-accent" d="M19 9h20" />
+      </svg>
+    );
+  }
+
   if (label === "Mastercard") {
     return (
-      <svg viewBox="0 0 78 28" focusable="false" aria-hidden="true">
-        <circle cx="32" cy="14" r="8.5" />
-        <circle cx="46" cy="14" r="8.5" />
-        <path d="M39 8.3a9.8 9.8 0 0 1 0 11.4 9.8 9.8 0 0 1 0-11.4Z" />
-        <path d="M12 20h7.5" />
-        <path d="M58 20h8" />
+      <svg viewBox="0 0 120 36" focusable="false" aria-hidden="true">
+        <circle className="payment-fill payment-soft-fill" cx="31" cy="16" r="8.5" />
+        <circle className="payment-accent-fill payment-soft-fill" cx="43" cy="16" r="8.5" />
+        <path className="payment-accent" d="M37 10.1a10.3 10.3 0 0 1 0 11.8 10.3 10.3 0 0 1 0-11.8Z" />
+        <text className="payment-wordmark payment-wordmark-small" x="59" y="20">
+          mastercard
+        </text>
       </svg>
     );
   }
 
-  if (label === "QR") {
+  if (label === "UnionPay") {
     return (
-      <svg viewBox="0 0 78 28" focusable="false" aria-hidden="true">
-        <rect x="18" y="6" width="6" height="6" />
-        <rect x="18" y="16" width="6" height="6" />
-        <rect x="28" y="6" width="6" height="6" />
-        <rect x="40" y="6" width="4" height="4" />
-        <rect x="48" y="6" width="6" height="6" />
-        <rect x="38" y="16" width="6" height="6" />
-        <rect x="50" y="18" width="4" height="4" />
-        <path d="M11 11V5h6" />
-        <path d="M61 5h6v6" />
-        <path d="M67 17v6h-6" />
-        <path d="M17 23h-6v-6" />
+      <svg viewBox="0 0 120 36" focusable="false" aria-hidden="true">
+        <path className="payment-stroke payment-muted-stroke" d="M15 9h22l-5 18H10z" />
+        <path className="payment-accent" d="M23 9h22l-5 18H18z" />
+        <path className="payment-stroke" d="M31 9h22l-5 18H26z" />
+        <text className="payment-wordmark payment-wordmark-small" x="58" y="21">
+          UnionPay
+        </text>
       </svg>
     );
   }
 
-  if (label === "Payouts") {
+  if (label === "Apple Pay") {
     return (
-      <svg viewBox="0 0 78 28" focusable="false" aria-hidden="true">
-        <circle cx="39" cy="14" r="4.5" />
-        <circle cx="20" cy="8" r="2.5" />
-        <circle cx="58" cy="8" r="2.5" />
-        <circle cx="24" cy="22" r="2.5" />
-        <circle cx="54" cy="22" r="2.5" />
-        <path d="M35 12 22.5 8.8" />
-        <path d="M43 12 55.5 8.8" />
-        <path d="M35.5 16.5 26 21" />
-        <path d="M42.5 16.5 52 21" />
+      <svg viewBox="0 0 120 36" focusable="false" aria-hidden="true">
+        <path
+          className="payment-fill"
+          d="M28 18.4c0-3.1 2.5-4.6 2.6-4.7-1.5-2.1-3.7-2.4-4.5-2.5-1.9-.2-3.7 1.1-4.7 1.1-1 0-2.4-1.1-4-1.1-2 0-3.9 1.2-5 3-2.1 3.7-.5 9.1 1.5 12.1 1 1.5 2.2 3 3.8 3s2.1-1 4-1 2.4 1 4 1 2.7-1.5 3.7-3c.8-1.1 1.1-2.3 1.2-2.3-.1 0-2.6-1-2.6-5.6ZM24.9 9c.9-1 1.4-2.5 1.2-3.9-1.2.1-2.8.9-3.6 1.9-.8.9-1.5 2.4-1.3 3.8 1.4.1 2.8-.7 3.7-1.8Z"
+        />
+        <text className="payment-wordmark payment-wordmark-pay" x="39" y="24">
+          Pay
+        </text>
       </svg>
     );
   }
 
-  if (label === "Invoices") {
+  if (label === "Google Pay") {
     return (
-      <svg viewBox="0 0 78 28" focusable="false" aria-hidden="true">
-        <path d="M25 5h22l6 6v12H25z" />
-        <path d="M47 5v7h6" />
-        <path d="M31 13h11" />
-        <path d="M31 18h8" />
-        <path d="m45 19 2.5 2.5L53 16" />
+      <svg viewBox="0 0 120 36" focusable="false" aria-hidden="true">
+        <text className="payment-wordmark payment-wordmark-google" x="16" y="24">
+          G
+        </text>
+        <text className="payment-wordmark payment-wordmark-pay" x="38" y="24">
+          Pay
+        </text>
+        <path className="payment-accent" d="M28 18h8" />
       </svg>
     );
   }
 
   return (
-    <svg viewBox="0 0 78 28" focusable="false" aria-hidden="true">
-      <path d="M14 8h50" />
-      <path d="m20 8 7 12h5l7-12" />
-      <path d="M43 20V8" />
-      <path d="M50 20 57 8l7 12" />
-      <path d="M53 16h8" />
+    <svg viewBox="0 0 120 36" focusable="false" aria-hidden="true">
+      <text className="payment-wordmark payment-wordmark-small" x="18" y="22">
+        {label}
+      </text>
     </svg>
   );
 }

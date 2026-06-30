@@ -3254,39 +3254,95 @@ input[readonly] {
 
 .method-logo {
   display: inline-flex;
-  width: 78px;
-  height: 36px;
+  width: 118px;
+  height: 40px;
   align-items: center;
   justify-content: center;
-  padding: 4px 8px;
+  padding: 6px 12px;
   border: 1px solid var(--line-dark);
-  color: var(--blue-2);
+  background: rgba(255, 255, 255, 0.015);
+  color: rgba(238, 246, 255, 0.82);
+  opacity: 0.82;
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    color 220ms ease,
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.method-logo:hover {
+  border-color: rgba(43, 139, 255, 0.62);
+  box-shadow: 0 0 18px rgba(43, 139, 255, 0.16);
+  color: rgba(255, 255, 255, 0.96);
+  opacity: 1;
+  transform: translateY(-1px);
 }
 
 .method-logo svg {
   width: 100%;
-  height: 28px;
+  height: 30px;
   overflow: visible;
 }
 
-.method-logo path,
-.method-logo circle,
-.method-logo rect {
+.payment-wordmark {
+  fill: currentColor;
+  stroke: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.payment-wordmark-visa {
+  font-size: 21px;
+  font-style: italic;
+  letter-spacing: 1.2px;
+}
+
+.payment-wordmark-small {
+  font-size: 13px;
+}
+
+.payment-wordmark-pay {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.payment-wordmark-google {
+  fill: var(--blue-2);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.payment-stroke,
+.payment-accent {
   fill: none;
-  stroke: rgba(238, 246, 255, 0.78);
-  stroke-width: 1.55;
+  stroke: currentColor;
+  stroke-width: 1.35;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.method-logo rect {
-  rx: 0.6px;
+.payment-muted-stroke {
+  opacity: 0.46;
 }
 
-.method-logo path:nth-last-child(1),
-.method-logo circle:nth-child(2),
-.method-logo rect:nth-child(5) {
+.payment-accent {
   stroke: var(--blue-2);
+}
+
+.payment-fill,
+.payment-accent-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.payment-accent-fill {
+  fill: var(--blue-2);
+}
+
+.payment-soft-fill {
+  opacity: 0.2;
 }
 
 .footer-bottom {

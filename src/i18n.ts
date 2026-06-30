@@ -179,7 +179,7 @@ export const dictionaries = {
       supportLabel: "Контакты поддержки:",
       sitemap: "Карта сайта",
       methods: "Платежные методы",
-      badges: ["VISA", "Mastercard", "QR", "Payouts", "Invoices"],
+      badges: ["Visa", "Mastercard", "UnionPay", "Apple Pay", "Google Pay"],
       legal: ["Политика конфиденциальности", "Terms of Service", "AML/KYC Policy", "Cookie Policy"]
     },
     legal: {
@@ -386,7 +386,7 @@ export const dictionaries = {
       supportLabel: "Support contacts:",
       sitemap: "Sitemap",
       methods: "Payment methods",
-      badges: ["VISA", "Mastercard", "QR", "Payouts", "Invoices"],
+      badges: ["Visa", "Mastercard", "UnionPay", "Apple Pay", "Google Pay"],
       legal: ["Privacy Policy", "Terms of Service", "AML/KYC Policy", "Cookie Policy"]
     },
     legal: {
