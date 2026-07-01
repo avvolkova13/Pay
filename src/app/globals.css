@@ -4397,14 +4397,15 @@ input[readonly] {
   }
 
   .hero-cover-stack {
-    gap: 18px;
-    transform: translateY(-18px);
+    gap: 20px;
+    transform: translateY(-10px);
   }
 
   .hero-intro-row {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 16px;
     width: 100%;
+    margin-top: 0;
   }
 
   .hero-text-copy {
@@ -4414,8 +4415,10 @@ input[readonly] {
   }
 
   .hero-text-copy .hero-lede {
-    max-width: 100%;
+    max-width: min(100%, 340px);
     margin: 0 auto;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .hero-text-copy .hero-actions {
@@ -4426,18 +4429,20 @@ input[readonly] {
     position: relative;
     top: auto;
     right: auto;
-    width: min(104vw, 520px);
-    margin-top: 18px;
+    width: min(112vw, 470px);
+    margin-top: 4px;
     margin-bottom: 0;
     justify-self: center;
     transform: none;
   }
 
-  .hero-copy h1 {
-    max-width: 100%;
-    font-size: clamp(1.38rem, 6.4vw, 1.52rem);
-    line-height: 1;
-    overflow-wrap: anywhere;
+  .hero-copy h1,
+  .hero-copy h1.hero-title-effect-compact {
+    max-width: min(100%, 350px);
+    font-size: clamp(2.08rem, 10.4vw, 2.78rem);
+    line-height: 0.96;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .hero-title-line {
@@ -4514,7 +4519,8 @@ input[readonly] {
   }
 
   .api-feature-copy h3 {
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .services-section .section-heading h2,
@@ -4540,10 +4546,32 @@ input[readonly] {
   }
 
   .security-copy .eyebrow,
-  .security-copy h2,
-  .security-copy p:not(.eyebrow),
   .industries-heading-block,
   .industry-marquee {
+    grid-column: 1 / -1;
+  }
+
+  .security-copy {
+    grid-template-columns: auto 1fr;
+    column-gap: 18px;
+  }
+
+  .security-copy::before {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .security-copy .eyebrow {
+    grid-column: 2;
+    grid-row: 1;
+    width: max-content;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .security-copy h2,
+  .security-copy p:not(.eyebrow) {
     grid-column: 1 / -1;
   }
 
@@ -4646,10 +4674,14 @@ input[readonly] {
   }
 
   .api-feature-row h3 {
-    font-size: clamp(1.58rem, 7.1vw, 2.25rem);
+    font-size: clamp(1.54rem, 6.7vw, 2.1rem);
+    max-width: 100%;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .api-feature-row:nth-child(3) h3 {
+    font-size: clamp(1.42rem, 6.05vw, 1.86rem);
     white-space: nowrap;
     overflow-wrap: normal;
     word-break: normal;
