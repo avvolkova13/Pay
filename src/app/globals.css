@@ -4429,11 +4429,11 @@ input[readonly] {
     position: relative;
     top: auto;
     right: auto;
-    width: min(112vw, 470px);
+    width: min(78vw, 370px);
     margin-top: 4px;
     margin-bottom: 0;
     justify-self: center;
-    transform: none;
+    transform: translateX(clamp(-36px, -6.4vw, -24px));
   }
 
   .hero-copy h1,
