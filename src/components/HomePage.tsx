@@ -1,4 +1,5 @@
 import { ApiFeatureRows, ApplicationForm, IndustryMarquee, SecurityStack } from "@/components/Interactive";
+import SuiIdentityManagementAnimation from "@/components/experimental/SuiIdentityManagementAnimation";
 import { HeroTitle } from "@/components/HeroTitle";
 import type { CSSProperties } from "react";
 import { type Dictionary, type Locale } from "@/i18n";
@@ -16,18 +17,27 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
       <section className="hero-section">
         <div className="hero-noise" aria-hidden="true" />
         <div className="section-shell hero-grid">
-          <div className="hero-copy">
-            <HeroTitle lines={heroTitleLines} variant={locale === "en" ? "compact" : "default"} />
-            <p className="hero-lede" data-reveal="copy" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
-              {dictionary.hero.text}
-            </p>
-            <div className="hero-actions" data-reveal="button" style={{ "--reveal-delay": "220ms" } as CSSProperties}>
-              <a className="primary-button hero-cta text-roll-button" href="#application" aria-label={dictionary.hero.primary}>
-                <span className="button-text-roll" aria-hidden="true" data-text={dictionary.hero.primary}>
-                  <span>{dictionary.hero.primary}</span>
-                  <span>{dictionary.hero.primary}</span>
-                </span>
-              </a>
+          <div className="hero-cover-stack">
+            <div className="hero-copy hero-title-copy">
+              <HeroTitle lines={heroTitleLines} variant={locale === "en" ? "compact" : "default"} />
+            </div>
+            <div className="hero-intro-row">
+              <div className="hero-copy hero-text-copy">
+                <p className="hero-lede" data-reveal="copy" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
+                  {dictionary.hero.text}
+                </p>
+                <div className="hero-actions" data-reveal="button" style={{ "--reveal-delay": "220ms" } as CSSProperties}>
+                  <a className="primary-button hero-cta text-roll-button" href="#application" aria-label={dictionary.hero.primary}>
+                    <span className="button-text-roll" aria-hidden="true" data-text={dictionary.hero.primary}>
+                      <span>{dictionary.hero.primary}</span>
+                      <span>{dictionary.hero.primary}</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div className="hero-animation-stage" data-reveal="decor" style={{ "--reveal-delay": "320ms" } as CSSProperties}>
+                <SuiIdentityManagementAnimation />
+              </div>
             </div>
           </div>
         </div>
