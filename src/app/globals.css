@@ -1092,7 +1092,7 @@ p {
 
 .service-card {
   position: relative;
-  min-height: 330px;
+  min-height: 470px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1109,7 +1109,8 @@ p {
 
 .service-card-top,
 .service-card-body,
-.service-card-action {
+.service-card-action,
+.service-card-price {
   opacity: 0;
   transform: translateY(16px);
   transition:
@@ -1154,7 +1155,7 @@ p {
 }
 
 .service-card-1 {
-  min-height: 330px;
+  min-height: 470px;
 }
 
 .service-card-4 {
@@ -1265,6 +1266,54 @@ p {
 
 .service-card:hover .service-card-action i {
   transform: scaleX(1);
+}
+
+.service-card-price {
+  display: grid;
+  gap: 8px;
+  max-height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    max-height 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    padding-top 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 360ms ease,
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card:hover .service-card-price,
+.service-card:focus-within .service-card-price {
+  max-height: 180px;
+  padding-top: 18px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card-price strong {
+  color: var(--blue);
+  font-size: clamp(1.95rem, 3.15vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 0.92;
+}
+
+.service-card-price span {
+  color: rgba(28, 61, 96, 0.72);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.service-card-price p {
+  max-width: 540px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.52;
 }
 
 @keyframes service-glyph-trace {
@@ -4428,7 +4477,7 @@ input[readonly] {
 
   .service-card,
   .service-card-1 {
-    min-height: 330px;
+    min-height: 480px;
   }
 
   .service-card::before {
@@ -4449,6 +4498,27 @@ input[readonly] {
     content: "";
     background-image: linear-gradient(90deg, rgba(87, 111, 139, 0.34) 28%, transparent 0);
     background-size: 13px 1px;
+  }
+
+  .service-card-price {
+    gap: 7px;
+    max-height: 180px;
+    padding-top: 14px;
+    opacity: 1;
+    transform: none;
+  }
+
+  .service-card-price strong {
+    font-size: clamp(1.72rem, 8.2vw, 2.35rem);
+  }
+
+  .service-card-price span {
+    font-size: 0.68rem;
+  }
+
+  .service-card-price p {
+    font-size: 0.92rem;
+    line-height: 1.48;
   }
 
   .api-feature-list {

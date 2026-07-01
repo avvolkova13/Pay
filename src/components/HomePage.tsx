@@ -66,6 +66,11 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
                 <span>-&gt;</span>
                 <i />
               </div>
+              <div className="service-card-price">
+                <strong>{item.price}</strong>
+                <span>{item.priceLabel}</span>
+                <p>{item.priceText}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -205,7 +210,7 @@ export function HomePage({ dictionary, locale }: { dictionary: Dictionary; local
               {dictionary.form.text}
             </p>
           </div>
-          <ApplicationForm dictionary={dictionary} locale={locale} />
+          <ApplicationForm dictionary={dictionary} />
         </div>
       </section>
     </main>

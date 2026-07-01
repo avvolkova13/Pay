@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import type { CSSProperties } from "react";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { routePairs, type Dictionary, type Locale } from "@/i18n";
+import { type Dictionary } from "@/i18n";
 
 export function IndustryTabs({ items }: { items: readonly (readonly [string, string])[] }) {
   const [active, setActive] = useState(0);
@@ -471,7 +470,7 @@ export function SecurityStack({ items }: { items: readonly (readonly [string, st
   );
 }
 
-export function ApplicationForm({ dictionary, locale }: { dictionary: Dictionary; locale: Locale }) {
+export function ApplicationForm({ dictionary }: { dictionary: Dictionary }) {
   const [success, setSuccess] = useState(false);
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -554,7 +553,6 @@ export function ApplicationForm({ dictionary, locale }: { dictionary: Dictionary
       {success ? (
         <div className="success-message wide-field" role="status">
           <p>{dictionary.form.success}</p>
-          <Link href={routePairs.checkout[locale]}>{dictionary.form.checkout}</Link>
         </div>
       ) : null}
     </form>

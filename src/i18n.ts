@@ -67,19 +67,31 @@ export const dictionaries = {
       items: [
         {
           title: "Прием платежей",
-          text: "Принимайте платежи банковскими картами через надежную платежную инфраструктуру с быстрым подключением и технической поддержкой."
+          text: "Принимайте платежи банковскими картами через надежную платежную инфраструктуру с быстрым подключением и технической поддержкой.",
+          price: "от 2,5%",
+          priceLabel: "ставка за обработку",
+          priceText: "Мультивалютный прием карт для онлайн-бизнеса: USD, EUR, RUB, KZT, TRY и другие валюты."
         },
         {
           title: "Оплата по QR-коду",
-          text: "Принимайте оплату по QR-кодам для онлайн-сервисов, мобильных приложений и офлайн-бизнеса."
+          text: "Принимайте оплату по QR-кодам для онлайн-сервисов, мобильных приложений и офлайн-бизнеса.",
+          price: "от 2%",
+          priceLabel: "ставка за QR-оплату",
+          priceText: "QR-сценарии для онлайн- и офлайн-точек с быстрым подтверждением оплаты."
         },
         {
           title: "Массовые выплаты",
-          text: "Автоматизируйте массовые выплаты партнерам, исполнителям и клиентам через единый платежный процесс."
+          text: "Автоматизируйте массовые выплаты партнерам, исполнителям и клиентам через единый платежный процесс.",
+          price: "от 1,5%",
+          priceLabel: "ставка за выплату",
+          priceText: "Выплаты партнерам, исполнителям и клиентам в разных валютах и географиях."
         },
         {
           title: "Выставление счетов",
-          text: "Создавайте и отправляйте счета юридическим лицам с прозрачным статусом оплаты и удобным управлением расчетами."
+          text: "Создавайте и отправляйте счета юридическим лицам с прозрачным статусом оплаты и удобным управлением расчетами.",
+          price: "от 0,5%",
+          priceLabel: "ставка для B2B-расчетов",
+          priceText: "Расчеты между юридическими лицами и контрагентами через согласованный B2B-процесс."
         }
       ]
     },
@@ -287,19 +299,31 @@ export const dictionaries = {
       items: [
         {
           title: "Card Processing",
-          text: "Card payment acceptance for online businesses with a clear onboarding and support process."
+          text: "Card payment acceptance for online businesses with a clear onboarding and support process.",
+          price: "from 2.5%",
+          priceLabel: "processing rate",
+          priceText: "Multi-currency card acceptance for online businesses in USD, EUR, RUB, KZT, TRY and more."
         },
         {
           title: "QR Payments",
-          text: "QR-based payment scenarios for fast checkout, mobile flows and points of sale."
+          text: "QR-based payment scenarios for fast checkout, mobile flows and points of sale.",
+          price: "from 2%",
+          priceLabel: "QR payment rate",
+          priceText: "QR payment flows for online and in-person touchpoints with quick confirmation."
         },
         {
           title: "Mass Payouts",
-          text: "Organized payout flows for partners, contractors or customers under an agreed operational model."
+          text: "Organized payout flows for partners, contractors or customers under an agreed operational model.",
+          price: "from 1.5%",
+          priceLabel: "payout rate",
+          priceText: "Payouts to partners, contractors and customers across currencies and geographies."
         },
         {
           title: "B2B Invoicing",
-          text: "Invoice flows for B2B clients with transparent approval and payment status."
+          text: "Invoice flows for B2B clients with transparent approval and payment status.",
+          price: "from 0.5%",
+          priceLabel: "B2B settlement rate",
+          priceText: "B2B settlement flows for legal entities and counterparties through an agreed process."
         }
       ]
     },
