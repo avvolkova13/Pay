@@ -3159,6 +3159,17 @@ input[readonly] {
   padding: clamp(74px, 10vw, 132px) 0;
 }
 
+.legal-page {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: clamp(128px, 12vw, 184px);
+}
+
+.legal-page-inner {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
 .checkout-page {
   color: #fff;
 }
@@ -3279,7 +3290,10 @@ input[readonly] {
   color: #a41717;
 }
 
-.legal-page,
+.legal-page {
+  background: #fff;
+}
+
 .not-found {
   background: #f4f7fb;
 }
