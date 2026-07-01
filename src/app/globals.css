@@ -4398,7 +4398,7 @@ input[readonly] {
 
   .hero-cover-stack {
     gap: 20px;
-    transform: translateY(-10px);
+    transform: translate(clamp(-46px, -8vw, -28px), -10px);
   }
 
   .hero-intro-row {
