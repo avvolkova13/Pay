@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CookieConsent } from "@/components/CookieConsent";
 import { MotionReveal } from "@/components/MotionReveal";
 import { SiteLoader } from "@/components/SiteLoader";
 import "../globals.css";
@@ -20,6 +21,7 @@ export default function RootLayout({
         <SiteLoader />
         <MotionReveal />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );

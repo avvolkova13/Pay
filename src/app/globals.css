@@ -3324,9 +3324,13 @@ input[readonly] {
 }
 
 .legal-sections p {
-  margin: 0;
+  margin: 0 0 12px;
   color: var(--muted);
   line-height: 1.75;
+}
+
+.legal-sections p:last-child {
+  margin-bottom: 0;
 }
 
 .legal-sections section > * {
@@ -3344,6 +3348,91 @@ input[readonly] {
 
 .legal-sections section.is-visible > *:nth-child(2) {
   transition-delay: 90ms;
+}
+
+.legal-sections section.is-visible > *:nth-child(3) {
+  transition-delay: 130ms;
+}
+
+.legal-sections section.is-visible > *:nth-child(4) {
+  transition-delay: 170ms;
+}
+
+.cookie-consent {
+  position: fixed;
+  right: clamp(18px, 3vw, 34px);
+  bottom: clamp(18px, 3vw, 34px);
+  z-index: 80;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px 18px;
+  width: min(560px, calc(100% - 36px));
+  padding: 18px;
+  border: 1px solid rgba(221, 234, 250, 0.2);
+  background: rgba(11, 15, 20, 0.96);
+  color: #fff;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+.cookie-consent h2 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 740;
+}
+
+.cookie-consent p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.cookie-consent a {
+  color: var(--blue-2);
+  font-weight: 680;
+}
+
+.cookie-consent-check {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.cookie-consent-check input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin: 1px 0 0;
+  accent-color: var(--blue);
+}
+
+.cookie-consent button {
+  align-self: start;
+  min-width: 112px;
+  min-height: 42px;
+  border: 0;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 760;
+  transition:
+    background-color 220ms ease,
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.cookie-consent button:hover:not(:disabled),
+.cookie-consent button:focus-visible:not(:disabled) {
+  background: #006fe8;
+  transform: translateY(-1px);
+}
+
+.cookie-consent button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
 }
 
 .site-footer {
@@ -4361,6 +4450,36 @@ input[readonly] {
     width: min(100% - 20px, 1320px);
     min-height: 62px;
     padding: 0 10px 0 12px;
+  }
+
+  .legal-page {
+    padding-top: 118px;
+  }
+
+  .legal-page-inner {
+    width: min(100% - 32px, 1280px);
+  }
+
+  .legal-header h1 {
+    font-size: clamp(2.65rem, 12vw, 4.4rem);
+    line-height: 0.98;
+  }
+
+  .legal-sections h2 {
+    font-size: 1.45rem;
+  }
+
+  .cookie-consent {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    grid-template-columns: 1fr;
+    width: auto;
+    padding: 16px;
+  }
+
+  .cookie-consent button {
+    width: 100%;
   }
 
   .brand span:last-child {

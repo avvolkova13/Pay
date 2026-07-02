@@ -50,8 +50,7 @@ export function Footer({ dictionary, locale }: { dictionary: Dictionary; locale:
   const legalLinks = [
     [dictionary.footer.legal[0], routePairs.privacy[locale]],
     [dictionary.footer.legal[1], routePairs.terms[locale]],
-    [dictionary.footer.legal[2], routePairs.aml[locale]],
-    [dictionary.footer.legal[3], routePairs.cookies[locale]]
+    [dictionary.footer.legal[2], routePairs.cookies[locale]]
   ] as const;
 
   return (

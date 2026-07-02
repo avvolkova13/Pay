@@ -205,7 +205,7 @@ export const dictionaries = {
       sitemap: "Карта сайта",
       methods: "Платежные методы",
       badges: ["Visa", "Mastercard", "Мир", "Apple Pay", "Google Pay", "PCI DSS"],
-      legal: ["Политика конфиденциальности", "Terms of Service", "AML/KYC Policy", "Cookie Policy"]
+      legal: ["Политика конфиденциальности", "Правила использования", "Политика Cookie"]
     },
     legal: {
       "privacy-policy": {
@@ -437,7 +437,7 @@ export const dictionaries = {
       sitemap: "Sitemap",
       methods: "Payment methods",
       badges: ["Visa", "Mastercard", "Mir", "Apple Pay", "Google Pay", "PCI DSS"],
-      legal: ["Privacy Policy", "Terms of Service", "AML/KYC Policy", "Cookie Policy"]
+      legal: ["Privacy Policy", "Terms of Service", "Cookie Policy"]
     },
     legal: {
       "privacy-policy": {
